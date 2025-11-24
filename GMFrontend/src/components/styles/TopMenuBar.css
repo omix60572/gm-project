@@ -1,0 +1,19 @@
+.nav-item {
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.nav-item:hover,
+.nav-item:focus,
+.nav-item:active {
+  -webkit-transform: translateY(-2px);
+  transform: translateY(-2px);
+}
+
+.top-menu-theme-switch-btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

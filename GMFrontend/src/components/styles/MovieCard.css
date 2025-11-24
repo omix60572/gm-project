@@ -1,0 +1,51 @@
+.movie-card {
+  float: left;
+  width: 14rem;
+  font-size: 0.8rem;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.movie-card:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.movie-card-img-div {
+  height: 9rem;
+  width: auto;
+  overflow: hidden;
+}
+
+.movie-card-title-p {
+  height: 2.5rem;
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.movie-card-text-p {
+  height: 6rem;
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+}
+
+.movie-card-text-release-date-p {
+  height: 1.1rem;
+  overflow: hidden;
+  margin: 0;
+}
