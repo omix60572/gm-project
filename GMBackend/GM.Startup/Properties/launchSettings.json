@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "GM.Startup": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
