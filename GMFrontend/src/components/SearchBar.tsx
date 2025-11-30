@@ -1,4 +1,3 @@
-import "./styles/SearchBar.css";
 import { type FormEvent, useState } from "react";
 
 interface SearchBarProps {

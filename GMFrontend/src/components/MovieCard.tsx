@@ -1,4 +1,3 @@
-import "../components/styles/MovieCard.css";
 import imgMoviePlaceholder from "../assets/stock-photo-black-background.jpg";
 import type MovieCardModel from "../models/MovieCardModel";
 import IconButtonWithTooltip from "./common/IconButtonWithTooltip";

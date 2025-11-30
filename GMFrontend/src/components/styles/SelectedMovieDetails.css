@@ -1,0 +1,17 @@
+.selected-movie-wide-card-page-root-div {
+  width: 100%;
+  text-align: center;
+}
+
+.selected-movie-wide-card-div {
+  max-width: 85rem;
+  display: inline-block;
+  text-align: left;
+}
+
+.selected-movie-details-top-buttons-div {
+  text-align: left;
+  max-width: 85rem;
+  width: 100%;
+  display: inline-block;
+}
