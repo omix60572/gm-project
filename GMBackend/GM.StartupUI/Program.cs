@@ -51,7 +51,7 @@ public static class Program
             .ConfigureServices((_, services) =>
             {
                 services.Configure<SqlSettings>(configuration.GetSection(SqlSettings.Section));
-                services.Configure<RemoteModuleSettings>(configuration.GetSection(RemoteModuleSettings.Section));
+                services.Configure<RemoteSearchSettings>(configuration.GetSection(RemoteSearchSettings.Section));
 
                 var intermediateProvider = services.BuildServiceProvider();
 
@@ -60,7 +60,7 @@ public static class Program
                     throw new ArgumentException("Sql settings is undefined");
 
                 var remoteModuleSettings =
-                    intermediateProvider.GetService<IOptions<RemoteModuleSettings>>()?.Value ??
+                    intermediateProvider.GetService<IOptions<RemoteSearchSettings>>()?.Value ??
                     throw new ArgumentException("Remote module settings is undefined");
 
                 services
