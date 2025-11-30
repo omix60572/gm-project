@@ -46,18 +46,20 @@ function MovieCard({ model }: Readonly<MovieCardProps>) {
           onButtonClick={onLikeClick}
         />
         <IconButtonWithTooltip
-          text="About the movie"
-          buttonColor="primary"
-          buttonClass="ms-2"
-          buttonIconClass="bi-info-circle-fill"
-          onButtonClick={() => {}}
-        />
-        <IconButtonWithTooltip
           text="Mark as viewed"
           buttonColor="primary"
           buttonClass="ms-2"
           buttonIconClass="bi-eyeglasses"
           onButtonClick={() => {}}
+        />
+        <IconButtonWithTooltip
+          text="About the movie"
+          buttonColor="primary"
+          buttonClass="ms-2"
+          buttonIconClass="bi-info-circle-fill"
+          onButtonClick={() => {
+            document.location.href = `${document.location.origin}/moviedetails/${model.id}`;
+          }}
         />
       </div>
     </div>

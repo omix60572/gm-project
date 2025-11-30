@@ -32,7 +32,7 @@ function App({ body }: Readonly<AppProps>) {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/favorites" element={<Favorites />} />
-          <Route path="/moviedetails" element={<MovieDetails />} />
+          <Route path="/moviedetails/:movieId" element={<MovieDetails />} />
         </Routes>
       </main>
       <Footer />
