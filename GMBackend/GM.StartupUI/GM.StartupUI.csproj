@@ -25,12 +25,12 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\GM.CommandHandlers\GM.CommandHandlers.csproj" />
-	  <ProjectReference Include="..\GM.Logging\GM.Logging.csproj" />
-	  <ProjectReference Include="..\GM.QueryHandlers\GM.QueryHandlers.csproj" />
-	  <ProjectReference Include="..\GM.Remote\GM.Remote.csproj" />
-	  <ProjectReference Include="..\GM.SharedLibs\GM.SharedLibs.csproj" />
-	  <ProjectReference Include="..\GM.Sql\GM.Sql.csproj" />
-	  <ProjectReference Include="..\GM.WebApi\GM.WebApi.csproj" />
+		<ProjectReference Include="..\GM.CommandHandlers\GM.CommandHandlers.csproj" />
+		<ProjectReference Include="..\GM.Logging\GM.Logging.csproj" />
+		<ProjectReference Include="..\GM.QueryHandlers\GM.QueryHandlers.csproj" />
+		<ProjectReference Include="..\GM.RemoteSearch\GM.RemoteSearch.csproj" />
+		<ProjectReference Include="..\GM.SharedLibs\GM.SharedLibs.csproj" />
+		<ProjectReference Include="..\GM.Sql\GM.Sql.csproj" />
+		<ProjectReference Include="..\GM.WebApi\GM.WebApi.csproj" />
 	</ItemGroup>
 </Project>

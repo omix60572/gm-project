@@ -1,9 +1,12 @@
-﻿namespace GM.Remote;
+﻿using GM.Remote.Enums;
 
-public class RemoteModuleSettings
+namespace GM.Remote;
+
+public class RemoteSearchSettings
 {
     public const string Section = "RemoteModuleSettings";
 
+    public ImageSearchProviders SearchProvider { get; set; }
     public string BaseUrl {  get; set; }
     public string APIKey { get; set; }
 }

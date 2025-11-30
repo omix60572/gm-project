@@ -7,7 +7,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\GM.Contracts\GM.Contracts.csproj" />
 	  <ProjectReference Include="..\GM.Logging\GM.Logging.csproj" />
-	  <ProjectReference Include="..\GM.Remote\GM.Remote.csproj" />
+	  <ProjectReference Include="..\GM.RemoteSearch\GM.RemoteSearch.csproj" />
 	  <ProjectReference Include="..\GM.SharedLibs\GM.SharedLibs.csproj" />
 	</ItemGroup>
 </Project>
