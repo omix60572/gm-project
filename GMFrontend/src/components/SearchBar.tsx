@@ -15,7 +15,7 @@ function SearchBar({ onSubmitted, placeholder }: Readonly<SearchBarProps>) {
       onSubmitted(searchQuery);
   };
 
-  const inputPlacaholder =
+  const inputPlaceholder =
     placeholder !== null && placeholder !== undefined && placeholder.length > 0
       ? placeholder
       : "Search for movies";
@@ -27,8 +27,8 @@ function SearchBar({ onSubmitted, placeholder }: Readonly<SearchBarProps>) {
           id="movies-form-search-input"
           type="text"
           className="form-control"
-          placeholder={inputPlacaholder}
-          aria-label={inputPlacaholder}
+          placeholder={inputPlaceholder}
+          aria-label={inputPlaceholder}
           aria-describedby="button-addon2"
           defaultValue={searchQuery}
           onChange={(e) => setSearchQuery(e.currentTarget.value)}
