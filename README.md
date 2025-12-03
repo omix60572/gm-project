@@ -22,3 +22,5 @@ cd GMFrontend
 npm install
 npm run dev
 ```
+
+### Источник для демо assets (демо список популярных фильмов): Сайт [IXBT Games Блоги Live](https://www.ixbt.com/live/movie/10-samyh-luchshih-filmov-po-ocenkam-na-imdb-zolotaya-desyatka-kino-za-vsyu-istoriyu-kinoindustrii.html)
