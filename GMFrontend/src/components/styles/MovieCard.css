@@ -49,3 +49,41 @@
   overflow: hidden;
   margin: 0;
 }
+
+.movie-card-skeleton {
+  pointer-events: none;
+}
+
+.movie-card-skeleton-block,
+.movie-card-skeleton-line,
+.movie-card-skeleton-button {
+  background: linear-gradient(
+    90deg,
+    rgba(108, 117, 125, 0.2),
+    rgba(108, 117, 125, 0.35),
+    rgba(108, 117, 125, 0.2)
+  );
+  background-size: 200% 100%;
+}
+
+.movie-card-skeleton-block {
+  height: 9rem;
+}
+
+.movie-card-skeleton-line {
+  height: 0.7rem;
+}
+
+.movie-card-skeleton-title {
+  height: 1.5rem;
+  width: 80%;
+}
+
+.movie-card-skeleton-short {
+  width: 60%;
+}
+
+.movie-card-skeleton-button {
+  width: 2rem;
+  height: 2rem;
+}
