@@ -1,0 +1,48 @@
+.selected-movie-wide-card-page-root-div {
+  width: 100%;
+  text-align: center;
+}
+
+.selected-movie-wide-card-div {
+  max-width: 85rem;
+  display: inline-block;
+  text-align: left;
+}
+
+.selected-movie-skeleton-poster,
+.selected-movie-skeleton-line {
+  background: linear-gradient(
+    90deg,
+    rgba(108, 117, 125, 0.2),
+    rgba(108, 117, 125, 0.35),
+    rgba(108, 117, 125, 0.2)
+  );
+  background-size: 200% 100%;
+}
+
+.selected-movie-wide-card-sceleton-item {
+  width: 85rem;
+  height: 20rem;
+}
+
+.selected-movie-skeleton-poster {
+  width: 100%;
+  height: 100%;
+  min-height: 14rem;
+}
+
+.selected-movie-skeleton-line {
+  height: 0.9rem;
+}
+
+.selected-movie-skeleton-title {
+  width: 70%;
+}
+
+.selected-movie-skeleton-short {
+  width: 60%;
+}
+
+.selected-movie-skeleton-shorter {
+  width: 40%;
+}

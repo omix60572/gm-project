@@ -1,4 +1,3 @@
-import "./styles/SearchBar.css";
 import { type FormEvent, useState } from "react";
 
 interface SearchBarProps {
@@ -16,20 +15,20 @@ function SearchBar({ onSubmitted, placeholder }: Readonly<SearchBarProps>) {
       onSubmitted(searchQuery);
   };
 
-  const inputPlacaholder =
+  const inputPlaceholder =
     placeholder !== null && placeholder !== undefined && placeholder.length > 0
       ? placeholder
       : "Search for movies";
 
   return (
-    <form className="movies-search-form ps-4 pe-4 mt-4" onSubmit={onSubmit}>
+    <form className="movies-search-form mt-4" onSubmit={onSubmit}>
       <div className="input-group mb-2 mt-2">
         <input
           id="movies-form-search-input"
           type="text"
           className="form-control"
-          placeholder={inputPlacaholder}
-          aria-label={inputPlacaholder}
+          placeholder={inputPlaceholder}
+          aria-label={inputPlaceholder}
           aria-describedby="button-addon2"
           defaultValue={searchQuery}
           onChange={(e) => setSearchQuery(e.currentTarget.value)}

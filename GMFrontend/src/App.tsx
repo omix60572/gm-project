@@ -1,5 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import "./components/styles/MovieCard.css";
+import "./components/styles/SearchBar.css";
+import "./components/styles/TopMenuBar.css";
+import "./components/styles/SelectedMovieDetails.css";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import TopMenuBar from "./components/TopMenuBar";

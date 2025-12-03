@@ -1,4 +1,3 @@
-import "../components/styles/MovieCard.css";
 import imgMoviePlaceholder from "../assets/stock-photo-black-background.jpg";
 import type MovieCardModel from "../models/MovieCardModel";
 import IconButtonWithTooltip from "./common/IconButtonWithTooltip";
@@ -25,7 +24,7 @@ function MovieCard({ model }: Readonly<MovieCardProps>) {
               ? model.imageUrl
               : imgMoviePlaceholder
           }
-          className="card-img-top movie-card-img"
+          className="card-img-top"
           alt={movieTitle}
         />
       </div>
