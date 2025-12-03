@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import MoviesList from "./MoviesList";
-import SearchBar from "./SearchBar";
 import type MovieCardModel from "../models/MovieCardModel";
 import { getPopularMovies } from "../services/MoviesApiService";
+import MoviesList from "./MoviesList";
+import MovieCardStub from "./MovieCardStub";
+import SearchBar from "./SearchBar";
 
 interface MoviesViewProps {
   searchPlaceholder?: string;
@@ -36,10 +37,19 @@ function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
     loadPopularMovies();
   }, []);
 
+  const timeKeyOffset = Date.now();
   return (
     <>
       <SearchBar placeholder={searchPlaceholder} />
-      <MoviesList movies={movies} />
+      {loading ? (
+        <div className="d-inline-block">
+          {Array.from({ length: 10 }).map((_, index) => (
+            <MovieCardStub key={timeKeyOffset + index} />
+          ))}
+        </div>
+      ) : (
+        <MoviesList movies={movies} />
+      )}
     </>
   );
 }

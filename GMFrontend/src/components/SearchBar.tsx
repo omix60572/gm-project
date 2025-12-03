@@ -21,7 +21,7 @@ function SearchBar({ onSubmitted, placeholder }: Readonly<SearchBarProps>) {
       : "Search for movies";
 
   return (
-    <form className="movies-search-form ps-4 pe-4 mt-4" onSubmit={onSubmit}>
+    <form className="movies-search-form mt-4" onSubmit={onSubmit}>
       <div className="input-group mb-2 mt-2">
         <input
           id="movies-form-search-input"

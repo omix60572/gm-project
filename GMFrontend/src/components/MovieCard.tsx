@@ -24,7 +24,7 @@ function MovieCard({ model }: Readonly<MovieCardProps>) {
               ? model.imageUrl
               : imgMoviePlaceholder
           }
-          className="card-img-top movie-card-img"
+          className="card-img-top"
           alt={movieTitle}
         />
       </div>
