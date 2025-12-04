@@ -4,6 +4,7 @@ import SelectedMovieDetailsStub from "../components/SelectedMovieDetailsStub";
 import { getMovieById } from "../services/MoviesApiService";
 import SelectedMovieDetails from "../components/SelectedMovieDetails";
 import type MovieCardModel from "../models/MovieCardModel";
+import ErrorBlock from "../components/common/ErrorBlock";
 
 function MovieDetails() {
   let { movieIdStr } = useParams();
@@ -24,7 +25,7 @@ function MovieDetails() {
         }
       } catch (e) {
         console.log(e);
-        setError("Failed to load movie...");
+        setError("Failed to load the movie details...");
       } finally {
         setLoading(false);
       }
@@ -32,6 +33,20 @@ function MovieDetails() {
 
     loadMovie();
   }, []);
+
+  const handleResult = (error: string) => {
+    let errorMessage = "";
+
+    if (error !== null && error !== undefined) errorMessage = error;
+    else if (movie === null || movie === undefined)
+      errorMessage = "The movie was not found...";
+
+    return errorMessage.length > 0 ? (
+      <ErrorBlock text={errorMessage} />
+    ) : (
+      <SelectedMovieDetails movie={movie!} />
+    );
+  };
 
   return (
     <>
@@ -46,11 +61,7 @@ function MovieDetails() {
           <i className="bi bi-arrow-left me-1"></i> Go back
         </button>
       </div>
-      {loading ? (
-        <SelectedMovieDetailsStub />
-      ) : (
-        <SelectedMovieDetails movie={movie!} />
-      )}
+      {loading ? <SelectedMovieDetailsStub /> : handleResult(error)}
     </>
   );
 }

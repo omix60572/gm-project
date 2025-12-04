@@ -19,7 +19,7 @@ function SelectedMovieDetails({ movie }: Readonly<SelectedMovieDetailsProps>) {
                   ? movie.imageUrl
                   : imgMoviePlaceholder
               }
-              className="card-img-top"
+              className="card-img"
               alt={movie.title}
             />
           </div>
