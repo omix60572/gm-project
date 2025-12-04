@@ -4,6 +4,7 @@ import { getPopularMovies } from "../services/MoviesApiService";
 import MoviesList from "./MoviesList";
 import MovieCardStub from "./MovieCardStub";
 import SearchBar from "./SearchBar";
+import ErrorBlock from "./common/ErrorBlock";
 
 interface MoviesViewProps {
   searchPlaceholder?: string;
@@ -28,7 +29,7 @@ function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
           setMovies(popularMoviesResponse);
       } catch (e) {
         console.log(e);
-        setError("Falied to load movies...");
+        setError("Failed to load the movies...");
       } finally {
         setLoading(false);
       }
@@ -36,6 +37,20 @@ function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
 
     loadPopularMovies();
   }, []);
+
+  const handleResult = (error: string) => {
+    let errorMessage = "";
+
+    if (error !== null && error !== undefined) errorMessage = error;
+    else if (movies === null || movies.length === 0)
+      errorMessage = "Movies list is empty";
+
+    return errorMessage.length > 0 ? (
+      <ErrorBlock text={errorMessage} />
+    ) : (
+      <MoviesList movies={movies} />
+    );
+  };
 
   const timeKeyOffset = Date.now();
   return (
@@ -48,7 +63,7 @@ function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
           ))}
         </div>
       ) : (
-        <MoviesList movies={movies} />
+        handleResult(error)
       )}
     </>
   );
