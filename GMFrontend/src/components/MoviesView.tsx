@@ -38,10 +38,11 @@ function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
     loadPopularMovies();
   }, []);
 
-  const handleResult = (error: string) => {
+  const handleResult = (movies: MovieCardModel[], error: string) => {
     let errorMessage = "";
 
-    if (error !== null && error !== undefined) errorMessage = error;
+    if (error !== null && error !== undefined && error !== "")
+      errorMessage = error;
     else if (movies === null || movies.length === 0)
       errorMessage = "Movies list is empty";
 
@@ -63,7 +64,7 @@ function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
           ))}
         </div>
       ) : (
-        handleResult(error)
+        handleResult(movies, error)
       )}
     </>
   );
