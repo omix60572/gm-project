@@ -11,6 +11,7 @@ public static class DIInjectionsMovies
     {
         services.AddTransient<IQueryHandler<PopularMoviesQuery, MoviesQueryResponse>, PopularMoviesQueryHandlerStub>();
         services.AddTransient<IQueryHandler<MoviesSearchQuery, MoviesQueryResponse>, MoviesSearchQueryHandlerStub>();
+        services.AddTransient<IQueryHandler<MovieQuery, MovieQueryResponse>, MovieQueryHandler>();
         return services;
     }
 }
