@@ -10,7 +10,7 @@ using Microsoft.Extensions.Options;
 using NLog;
 using NLog.Extensions.Hosting;
 
-namespace GM.Statup;
+namespace GM.WebApiStartup;
 
 public static class Program
 {
