@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using NLog;
 using System.Reflection;
 
-namespace GM.Statup;
+namespace GM.WebApiStartup;
 
 public class Startup
 {

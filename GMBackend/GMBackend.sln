@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.0.11205.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GM.StartupUI", "GM.StartupUI\GM.StartupUI.csproj", "{9C1DB7A1-0B55-932A-F34B-0766537B0F4C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GM.WebApiStartup", "GM.WebApiStartup\GM.WebApiStartup.csproj", "{9C1DB7A1-0B55-932A-F34B-0766537B0F4C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GM.WebApi", "GM.WebApi\GM.WebApi.csproj", "{4EB8C572-345B-4B13-915B-CECDD25B2571}"
 EndProject
@@ -25,7 +25,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GM.RabbitMessaging", "GM.Ra
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{820936B9-8AD5-4D55-8730-B40B94B0CDBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GM.RabbitBackend", "GM.RabbitBackend\GM.RabbitBackend.csproj", "{2E6B3B15-6A31-4AA1-AFC7-8F233CADFF80}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GM.RabbitBackendService", "GM.RabbitBackendService\GM.RabbitBackendService.csproj", "{2E6B3B15-6A31-4AA1-AFC7-8F233CADFF80}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{6309B5E7-0B72-454D-9A73-25453430437F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,7 @@ Global
 		{7B29CCFE-0BB7-40FE-A1F6-95F9418D5083} = {820936B9-8AD5-4D55-8730-B40B94B0CDBD}
 		{C30C516E-C364-413A-BB59-AE163E5D5296} = {820936B9-8AD5-4D55-8730-B40B94B0CDBD}
 		{8D4F08EE-CB3A-49CD-B0AE-A4A2C5D8DB62} = {820936B9-8AD5-4D55-8730-B40B94B0CDBD}
+		{2E6B3B15-6A31-4AA1-AFC7-8F233CADFF80} = {6309B5E7-0B72-454D-9A73-25453430437F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5FB1E58F-1EF4-460E-AC54-523571672B17}

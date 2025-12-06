@@ -8,9 +8,6 @@
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<Folder Include="Middleware\" />
-	</ItemGroup>
-	<ItemGroup>
 	  <ProjectReference Include="..\GM.Contracts\GM.Contracts.csproj" />
 	  <ProjectReference Include="..\GM.Logging\GM.Logging.csproj" />
 	</ItemGroup>
