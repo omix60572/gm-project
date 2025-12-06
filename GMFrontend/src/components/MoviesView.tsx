@@ -38,7 +38,7 @@ function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
     loadPopularMovies();
   }, []);
 
-  const handleResult = (error: string) => {
+  const handleResult = (movies: MovieCardModel[], error: string) => {
     let errorMessage = "";
 
     if (error !== null && error !== undefined && error !== "")
@@ -64,7 +64,7 @@ function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
           ))}
         </div>
       ) : (
-        handleResult(error)
+        handleResult(movies, error)
       )}
     </>
   );
