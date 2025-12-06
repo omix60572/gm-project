@@ -41,7 +41,8 @@ function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
   const handleResult = (error: string) => {
     let errorMessage = "";
 
-    if (error !== null && error !== undefined) errorMessage = error;
+    if (error !== null && error !== undefined && error !== "")
+      errorMessage = error;
     else if (movies === null || movies.length === 0)
       errorMessage = "Movies list is empty";
 

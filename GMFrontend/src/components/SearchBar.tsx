@@ -35,8 +35,7 @@ function SearchBar({ onSubmitted, placeholder }: Readonly<SearchBarProps>) {
           onKeyUp={(e) => setSearchQuery(e.currentTarget.value)}
         />
         <button className="btn btn-primary" type="submit" id="button-addon2">
-          <i className="bi bi-search me-1"></i>
-          Search
+          <i className="bi bi-search me-1"></i> Search
         </button>
       </div>
     </form>

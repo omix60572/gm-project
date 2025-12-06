@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SelectedMovieDetailsStub from "../components/SelectedMovieDetailsStub";
 import { getMovieById } from "../services/MoviesApiService";
@@ -7,7 +6,8 @@ import type MovieCardModel from "../models/MovieCardModel";
 import ErrorBlock from "../components/common/ErrorBlock";
 
 function MovieDetails() {
-  let { movieIdStr } = useParams();
+  const urlsParts = document.URL.split("/");
+  let movieIdStr = urlsParts.at(-1);
   movieIdStr ??= "-1";
 
   const movieId = Number.parseInt(movieIdStr);
@@ -34,17 +34,18 @@ function MovieDetails() {
     loadMovie();
   }, []);
 
-  const handleResult = (error: string) => {
+  const handleResult = (movie: MovieCardModel, error: string) => {
     let errorMessage = "";
 
-    if (error !== null && error !== undefined) errorMessage = error;
+    if (error !== null && error !== undefined && error !== "")
+      errorMessage = error;
     else if (movie === null || movie === undefined)
       errorMessage = "The movie was not found...";
 
     return errorMessage.length > 0 ? (
       <ErrorBlock text={errorMessage} />
     ) : (
-      <SelectedMovieDetails movie={movie!} />
+      <SelectedMovieDetails movie={movie} />
     );
   };
 
@@ -61,7 +62,7 @@ function MovieDetails() {
           <i className="bi bi-arrow-left me-1"></i> Go back
         </button>
       </div>
-      {loading ? <SelectedMovieDetailsStub /> : handleResult(error)}
+      {loading ? <SelectedMovieDetailsStub /> : handleResult(movie!, error)}
     </>
   );
 }
