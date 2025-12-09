@@ -7,14 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="Factories\" />
-		<Folder Include="Base\" />
-		<Folder Include="Listeners\" />
-		<Folder Include="Handlers\" />
-		<Folder Include="Queues\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="RabbitMQ.Client" Version="6.5.0" />
 	</ItemGroup>
 
