@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GM.QueryHandlers.Movies;
 
+// TODO: Replace stub implementation
 public class MoviesSearchQueryHandlerStub(IContextFactory contextFactory) : QueryHandlerBase, IQueryHandler<MoviesSearchQuery, MoviesQueryResponse>
 {
     private readonly IContextFactory contextFactory = contextFactory;
