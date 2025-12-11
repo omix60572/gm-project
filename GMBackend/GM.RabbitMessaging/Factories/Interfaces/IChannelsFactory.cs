@@ -4,5 +4,5 @@ namespace GM.RabbitMessaging.Factories.Interfaces;
 
 public interface IChannelsFactory
 {
-    IModel GetChannel(IConnection connection, string queueName);
+    IModel TryGetChannel(IConnection connection, string queueName);
 }
