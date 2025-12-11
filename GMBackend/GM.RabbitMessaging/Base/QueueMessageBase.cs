@@ -8,6 +8,9 @@ public abstract class QueueMessageBase
 {
     protected BasicGetResult result;
 
+    protected QueueMessageBase() => this.result = null;
+    protected QueueMessageBase(BasicGetResult result) => this.result = result;
+
     public override string ToString()
     {
         var str = JsonConvert.SerializeObject(this);
@@ -19,4 +22,6 @@ public abstract class QueueMessageBase
 
         return JsonConvert.SerializeObject(queueMessage);
     }
+
+    public object GetResult() => this.result;
 }

@@ -2,6 +2,8 @@
 
 public interface IMessagesQueue
 {
-    Task<IQueueMessage> GetMessageAsync(CancellationToken cancellationToken);
-    Task SendMessageAsync(IQueueMessage message, CancellationToken cancellationToken);
+    string QueueName { get; }
+
+    Task<IQueueMessage> GetMessageAsync(CancellationToken cancellation);
+    Task SendMessageAsync(IQueueMessage message, CancellationToken cancellation);
 }

@@ -4,7 +4,4 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 	</PropertyGroup>
-	<ItemGroup>
-	  <Folder Include="Messaging\" />
-	</ItemGroup>
 </Project>

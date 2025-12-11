@@ -2,5 +2,5 @@
 
 public interface IQueueListener<T> where T : IQueueMessage
 {
-    Task ListenQueueAsync(Func<IQueueMessageHandler<T>> getHandler, IMessagesQueue queue, CancellationToken cancellationToken);
+    Task ListenQueueAsync(Func<IQueueMessageHandler<T>> getQueueHandler, IMessagesQueue queue, CancellationToken cancellation);
 }
