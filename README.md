@@ -12,10 +12,10 @@ Demo project (react, typescript, C#, frontend, backend, MS-SQL)
 -- [Общие компоненты системы]
 -- [...]
 # Startup services:
--- Services                     | Запускаемые сервисы
---- GM.RabbitBackendService     | Запуск backend'a для обработки очередей rabbitMQ
-# Startup projects:
-- GM.WebApiStartup              | Запуск web API для работы frontend'a
+-- Services                         | Запускаемые сервисы
+--- GM.MessagingBackendService      | Запуск backend'a для обработки очередей rabbitMQ
+# Main startup projects:
+- GM.WebApiStartup                  | Запуск web API для работы frontend'a
 ```
 
 ### Для запуска frontend'а:
