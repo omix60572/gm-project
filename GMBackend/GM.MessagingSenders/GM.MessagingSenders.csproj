@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Folder Include="Senders\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\GM.Logging\GM.Logging.csproj" />
+	  <ProjectReference Include="..\GM.RabbitMessaging\GM.RabbitMessaging.csproj" />
+	  <ProjectReference Include="..\GM.SharedLibs\GM.SharedLibs.csproj" />
+	</ItemGroup>
+
+</Project>
