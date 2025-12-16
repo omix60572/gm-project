@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GM.RabbitMessaging;
 
-public static  class DIInjections
+public static class DIInjections
 {
     public static IServiceCollection AddRabbitMessaging(this IServiceCollection services, MessagingSettings settings) =>
         services

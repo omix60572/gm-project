@@ -8,7 +8,10 @@ public class QueueListener<T>(int waitDelay) : IQueueListener<T> where T: IQueue
 {
     private readonly int waitDelay = waitDelay;
 
-    public async Task ListenQueueAsync(Func<IQueueMessageHandler<T>> getQueueHandler, IMessagesQueue queue, CancellationToken cancellation)
+    public async Task ListenQueueAsync(
+        Func<IQueueMessageHandler<T>> getQueueHandler,
+        IMessagesQueue queue,
+        CancellationToken cancellation)
     {
         var messageQueueName = queue.QueueName;
         var logger = LogManager.GetLogger(messageQueueName);
@@ -16,16 +19,15 @@ public class QueueListener<T>(int waitDelay) : IQueueListener<T> where T: IQueue
         while (!cancellation.IsCancellationRequested)
         {
             var message = await queue.GetMessageAsync(cancellation);
-            if (message == null || message.GetResult() == null)
+            if (message == null)
             {
-                logger.Trace("No result from rabbit queue");
                 await Task.Delay(waitDelay, cancellation);
                 continue;
             }
 
             try
             {
-                var receivedObject = JsonConvert.DeserializeObject<T>(message.ToString());
+                var receivedObject = JsonConvert.DeserializeObject<T>(message.GetAsString());
                 var queueHandler = getQueueHandler();
                 if (queueHandler != null)
                 {
@@ -40,10 +42,6 @@ public class QueueListener<T>(int waitDelay) : IQueueListener<T> where T: IQueue
             {
                 logger.Error(ex, $"Failed to process message from queue {messageQueueName}");
                 await Task.Delay(waitDelay,  cancellation);
-            }
-            finally
-            {
-                logger.Trace($"Message from queue {messageQueueName} was processed successfully");
             }
         }
     }

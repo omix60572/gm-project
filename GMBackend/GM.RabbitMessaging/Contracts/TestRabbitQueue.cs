@@ -3,4 +3,4 @@ using GM.RabbitMessaging.Queues.Interfaces;
 
 namespace GM.RabbitMessaging.Contracts;
 
-public class TestRabbitQueueMessage : QueueMessageBase, IQueueMessage;
+public class TestRabbitQueue : QueueMessageBase, IQueueMessage;

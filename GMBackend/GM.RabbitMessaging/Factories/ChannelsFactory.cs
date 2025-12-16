@@ -22,7 +22,7 @@ public class ChannelsFactory(IMessagingSettingsProvider settingsProvider) : ICha
             channelModel.ExchangeDeclare(exchange: exchangeName, type: ExchangeType.Direct);
             channelModel.QueueDeclare(
                 queue: queueName,
-                durable: false,
+                durable: false, // Не пишем на диск
                 exclusive: false,
                 autoDelete: false,
                 arguments: null);

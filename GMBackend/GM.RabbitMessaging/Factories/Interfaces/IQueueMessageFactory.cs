@@ -4,5 +4,5 @@ namespace GM.RabbitMessaging.Factories.Interfaces;
 
 public interface IQueueMessageFactory
 {
-    IQueueMessage CreateQueueMessage(string body);
+    IQueueMessage GetQueueMessage(string body);
 }

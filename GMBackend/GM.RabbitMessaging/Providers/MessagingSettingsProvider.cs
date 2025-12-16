@@ -6,6 +6,9 @@ public class MessagingSettingsProvider(MessagingSettings settings) : IMessagingS
 {
     private readonly MessagingSettings settings = settings;
 
+    public string GetConnectionString() =>
+        settings.ConnectionString;
+
     public string GetDefaultExchange() =>
         this.settings.DefaultExchange;
 

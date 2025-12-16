@@ -1,4 +1,5 @@
 ﻿using GM.RabbitMessaging.Factories.Interfaces;
+using GM.RabbitMessaging.Models;
 using GM.RabbitMessaging.Providers.Interfaces;
 using GM.RabbitMessaging.Queues.Interfaces;
 using NLog;
@@ -36,13 +37,24 @@ public class RabbitQueue : IMessagesQueue
         this.logger = LogManager.GetCurrentClassLogger();
     }
 
-    public Task<IQueueMessage> GetMessageAsync(CancellationToken cancellation)
-    {
-        throw new NotImplementedException();
-    }
+    public Task<IQueueMessage> GetMessageAsync(CancellationToken cancellation) =>
+        Task.Run(() => this.GetMessage(), cancellation);
 
     public Task SendMessageAsync(IQueueMessage message, CancellationToken cancellation) =>
         Task.Run(() => this.SendMessage(message.ToString()), cancellation);
+
+    private IQueueMessage GetMessage()
+    {
+        using var channel = this.TryGetChannel();
+        if (channel == null)
+            return null;
+
+        var message = channel.BasicGet(this.QueueName, true);
+        if (message == null)
+            return null;
+
+        return (IQueueMessage)new QueueMessage(message);
+    }
 
     private void SendMessage(string content)
     {
