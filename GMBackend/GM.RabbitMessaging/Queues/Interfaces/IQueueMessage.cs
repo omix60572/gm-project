@@ -1,3 +1,9 @@
-﻿namespace GM.RabbitMessaging.Queues.Interfaces;
+﻿using RabbitMQ.Client;
 
-public interface IQueueMessage;
+namespace GM.RabbitMessaging.Queues.Interfaces;
+
+public interface IQueueMessage
+{
+    string GetAsString();
+    BasicGetResult GetResult();
+}
