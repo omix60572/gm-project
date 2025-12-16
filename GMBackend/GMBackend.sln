@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{63
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GM.MessagingHandlers", "GM.MessagingHandlers\GM.MessagingHandlers.csproj", "{2AB3C2A8-B891-4345-B270-0161024AB476}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GM.MessagingSenders", "GM.MessagingSenders\GM.MessagingSenders.csproj", "{AC1C67C7-DFCD-429E-B87F-ED251E75FAF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{2AB3C2A8-B891-4345-B270-0161024AB476}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AB3C2A8-B891-4345-B270-0161024AB476}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AB3C2A8-B891-4345-B270-0161024AB476}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC1C67C7-DFCD-429E-B87F-ED251E75FAF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC1C67C7-DFCD-429E-B87F-ED251E75FAF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC1C67C7-DFCD-429E-B87F-ED251E75FAF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC1C67C7-DFCD-429E-B87F-ED251E75FAF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +107,7 @@ Global
 		{8D4F08EE-CB3A-49CD-B0AE-A4A2C5D8DB62} = {820936B9-8AD5-4D55-8730-B40B94B0CDBD}
 		{2E6B3B15-6A31-4AA1-AFC7-8F233CADFF80} = {6309B5E7-0B72-454D-9A73-25453430437F}
 		{2AB3C2A8-B891-4345-B270-0161024AB476} = {820936B9-8AD5-4D55-8730-B40B94B0CDBD}
+		{AC1C67C7-DFCD-429E-B87F-ED251E75FAF7} = {820936B9-8AD5-4D55-8730-B40B94B0CDBD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5FB1E58F-1EF4-460E-AC54-523571672B17}
