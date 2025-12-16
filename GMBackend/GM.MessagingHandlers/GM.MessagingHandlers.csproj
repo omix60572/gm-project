@@ -6,4 +6,8 @@
 		<Nullable>disable</Nullable>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\GM.RabbitMessaging\GM.RabbitMessaging.csproj" />
+	</ItemGroup>
+
 </Project>
