@@ -1,7 +1,7 @@
 IF OBJECT_ID(N'dbo.Applications', N'U') IS NULL
 BEGIN
     CREATE TABLE dbo.Applications (
-        ApplicationName NVARCHAR(200)   NOT NULL
+        ApplicationName     NVARCHAR(80)   NOT NULL
     );
 
     ALTER TABLE dbo.Applications 
