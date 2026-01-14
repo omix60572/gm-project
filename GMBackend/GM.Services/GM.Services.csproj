@@ -7,13 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\GM.Logging\GM.Logging.csproj" />
-	  <ProjectReference Include="..\GM.RabbitMessaging\GM.RabbitMessaging.csproj" />
-	  <ProjectReference Include="..\GM.SharedLibs\GM.SharedLibs.csproj" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.15.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Senders\" />
+		<ProjectReference Include="..\GM.Logging\GM.Logging.csproj" />
+		<ProjectReference Include="..\GM.SharedLibs\GM.SharedLibs.csproj" />
 	</ItemGroup>
 
 </Project>
