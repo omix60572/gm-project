@@ -5,9 +5,6 @@ namespace GM.Sql;
 
 public static class DIInjections
 {
-    public static IServiceCollection AddSql(this IServiceCollection services)
-    {
+    public static IServiceCollection AddSql(this IServiceCollection services) =>
         services.AddTransient<IContextFactory, ContextFactory>();
-        return services;
-    }
 }

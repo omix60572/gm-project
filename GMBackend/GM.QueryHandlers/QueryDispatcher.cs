@@ -3,9 +3,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GM.QueryHandlers;
 
-public class QueryDispatcher(IServiceProvider serviceProvider) : IQueryDispatcher
+public class QueryDispatcher : IQueryDispatcher
 {
-    private readonly IServiceProvider serviceProvider = serviceProvider;
+    private readonly IServiceProvider serviceProvider;
+
+    public QueryDispatcher(IServiceProvider serviceProvider) =>
+        this.serviceProvider = serviceProvider;
 
     public async Task<TResponse> ExecuteAsync<TQuery, TResponse>(TQuery query, CancellationToken cancellation)
         where TQuery : IQuery, new()
