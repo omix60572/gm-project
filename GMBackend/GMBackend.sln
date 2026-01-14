@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GM.MessagingBackendService", "GM.MessagingBackendService\GM.MessagingBackendService.csproj", "{2E6B3B15-6A31-4AA1-AFC7-8F233CADFF80}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{6309B5E7-0B72-454D-9A73-25453430437F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackgroundServices", "BackgroundServices", "{6309B5E7-0B72-454D-9A73-25453430437F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GM.MessagingHandlers", "GM.MessagingHandlers\GM.MessagingHandlers.csproj", "{2AB3C2A8-B891-4345-B270-0161024AB476}"
 EndProject

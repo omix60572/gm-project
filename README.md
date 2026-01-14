@@ -13,10 +13,10 @@ Demo project (react, typescript, C#, frontend, backend, MS-SQL)
 -- [Общие компоненты системы]
 -- [...]
 # Startup services:
--- Services                         | Запускаемые сервисы
---- GM.MessagingBackendService      | Запуск backend'a для обработки очередей rabbitMQ
+-- BackgroundServices                   | Запускаемые сервисы
+--- GM.MessagingBackendService          | Запуск backend'a для обработки очередей rabbitMQ
 # Main startup projects:
-- GM.WebApiStartup                  | Запуск web API для работы frontend'a
+- GM.WebApiStartup                      | Запуск web API для работы frontend'a
 ```
 
 ### Для запуска frontend'а:
@@ -28,3 +28,5 @@ npm run dev
 ```
 
 ### Источник для демо assets (демо список популярных фильмов): Сайт [IXBT Games Блоги Live](https://www.ixbt.com/live/movie/10-samyh-luchshih-filmov-po-ocenkam-na-imdb-zolotaya-desyatka-kino-za-vsyu-istoriyu-kinoindustrii.html)
+
+### Appsettings.json (формат файла и необходимые настройки): (!TODO!)
