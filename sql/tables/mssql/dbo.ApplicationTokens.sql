@@ -1,8 +1,8 @@
 IF OBJECT_ID(N'dbo.ApplicationTokens', N'U') IS NULL
 BEGIN
     CREATE TABLE dbo.ApplicationTokens (
-        ApplicationName  NVARCHAR(128) NOT NULL,
-        Expire           DATETIME      NOT NULL
+        ApplicationName     NVARCHAR(80)    NOT NULL,
+        Expire              DATETIME        NOT NULL
     );
 
     ALTER TABLE dbo.ApplicationTokens 
