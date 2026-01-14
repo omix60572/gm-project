@@ -10,6 +10,8 @@ public class EntitiesContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfiguration(new ApplicationEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new ApplicationTokenEntityConfiguration());
         modelBuilder.ApplyConfiguration(new MovieEntityConfiguration());
     }
 }
