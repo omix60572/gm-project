@@ -33,6 +33,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GM.MessagingHandlers", "GM.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GM.MessagingSenders", "GM.MessagingSenders\GM.MessagingSenders.csproj", "{AC1C67C7-DFCD-429E-B87F-ED251E75FAF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GM.Services", "GM.Services\GM.Services.csproj", "{FE056725-C8B5-4231-A044-BC18230BDC27}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AA48C803-A474-4FF4-BB51-D519E3FCE61C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +95,10 @@ Global
 		{AC1C67C7-DFCD-429E-B87F-ED251E75FAF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC1C67C7-DFCD-429E-B87F-ED251E75FAF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC1C67C7-DFCD-429E-B87F-ED251E75FAF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE056725-C8B5-4231-A044-BC18230BDC27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE056725-C8B5-4231-A044-BC18230BDC27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE056725-C8B5-4231-A044-BC18230BDC27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE056725-C8B5-4231-A044-BC18230BDC27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,6 +116,7 @@ Global
 		{2E6B3B15-6A31-4AA1-AFC7-8F233CADFF80} = {6309B5E7-0B72-454D-9A73-25453430437F}
 		{2AB3C2A8-B891-4345-B270-0161024AB476} = {820936B9-8AD5-4D55-8730-B40B94B0CDBD}
 		{AC1C67C7-DFCD-429E-B87F-ED251E75FAF7} = {820936B9-8AD5-4D55-8730-B40B94B0CDBD}
+		{FE056725-C8B5-4231-A044-BC18230BDC27} = {820936B9-8AD5-4D55-8730-B40B94B0CDBD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5FB1E58F-1EF4-460E-AC54-523571672B17}
