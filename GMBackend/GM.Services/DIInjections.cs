@@ -5,6 +5,6 @@ namespace GM.Services;
 
 public static class DIInjections
 {
-    public static IServiceCollection AddTokensServices(this IServiceCollection services) =>
+    public static IServiceCollection AddTokensService(this IServiceCollection services) =>
         services.AddSingleton<ITokenService, TokenService>();
 }

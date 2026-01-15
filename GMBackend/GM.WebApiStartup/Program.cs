@@ -1,7 +1,9 @@
 ﻿using GM.CommandHandlers;
 using GM.QueryHandlers;
 using GM.Remote;
+using GM.Services.Settings;
 using GM.Sql;
+using GM.WebApi;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,21 +20,21 @@ public static class Program
 
     public static async Task Main()
     {
-        var configurationBuilder = new ConfigurationBuilder();
-        configurationBuilder.AddEnvironmentVariables();
-
-        var configuration = configurationBuilder
-            .AddJsonFile("appsettings.json")
-            .Build();
-
-        var builder = GetWebHostBuilder(configuration);
         try
         {
+            var configurationBuilder = new ConfigurationBuilder();
+            configurationBuilder.AddEnvironmentVariables();
+
+            var configuration = configurationBuilder
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            var builder = GetWebHostBuilder(configuration);
             await builder.Build().RunAsync();
         }
         catch (Exception ex)
         {
-            Logger.Fatal(ex, "Error running API Backend. Try running as a console app to see error details.");
+            Logger.Fatal(ex, "Error running web API backend. Try running as a console app to see error details.");
         }
     }
 
@@ -50,8 +52,10 @@ public static class Program
             })
             .ConfigureServices((_, services) =>
             {
-                services.Configure<SqlSettings>(configuration.GetSection(SqlSettings.Section));
-                services.Configure<RemoteSearchSettings>(configuration.GetSection(RemoteSearchSettings.Section));
+                services
+                    .Configure<SqlSettings>(configuration.GetSection(SqlSettings.Section))
+                    .Configure<RemoteSearchSettings>(configuration.GetSection(RemoteSearchSettings.Section))
+                    .Configure<JwtSettings>(configuration.GetSection(JwtSettings.Section));
 
                 var intermediateProvider = services.BuildServiceProvider();
 
@@ -63,12 +67,17 @@ public static class Program
                     intermediateProvider.GetService<IOptions<RemoteSearchSettings>>()?.Value ??
                     throw new ArgumentException("Remote module settings is undefined");
 
+                var jwtSettings =
+                    intermediateProvider.GetService<IOptions<JwtSettings>>()?.Value ??
+                    throw new ArgumentException("Web API JWT settings is undefined");
+
                 services
                     .AddSingleton(sqlSettings)
                     .AddSingleton(remoteModuleSettings)
                     .AddSql()
                     .AddQueryHandlers()
                     .AddCommandHandlers()
+                    .AddWebApi(jwtSettings)
                     .AddRemoteModule();
             })
             .UseNLog();
