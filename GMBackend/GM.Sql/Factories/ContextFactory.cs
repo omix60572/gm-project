@@ -1,4 +1,5 @@
 ﻿using GM.Sql.Enums;
+using GM.Sql.Factories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 

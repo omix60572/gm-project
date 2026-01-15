@@ -1,6 +1,6 @@
 ﻿using GM.Contracts.Commands;
 using GM.Contracts.Commands.Tokens;
-using GM.Sql.Factories;
+using GM.Sql.Factories.Interfaces;
 
 namespace GM.CommandHandlers.Tokens;
 

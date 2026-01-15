@@ -2,7 +2,7 @@
 using GM.Contracts.Queries;
 using GM.Contracts.Queries.Movies;
 using GM.Sql.Entities;
-using GM.Sql.Factories;
+using GM.Sql.Factories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace GM.QueryHandlers.Movies;
