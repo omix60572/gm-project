@@ -5,7 +5,7 @@ Demo project (react, typescript, C#, frontend, backend, MS-SQL)
 ![Site top bar](/demoAssets/TopBarScreenshot.png)
 ### Preview изображения элементов сайта можно посмотреть [тут](https://github.com/omix60572/gm-project/tree/main/demoAssets/previewImages)
 
-### Структура проекта Backend:
+### Структура проекта Backend (структура проекта в Visual Studio):
 
 ```txt
 # Solution root
