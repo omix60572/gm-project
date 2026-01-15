@@ -1,4 +1,5 @@
 ﻿using GM.Sql.Factories;
+using GM.Sql.Factories.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GM.Sql;

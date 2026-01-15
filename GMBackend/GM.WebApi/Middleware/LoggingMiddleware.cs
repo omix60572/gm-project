@@ -4,17 +4,17 @@ using System.Threading.Tasks;
 
 namespace GM.WebApi.Middleware;
 
-public class TokenValidationMiddleware
+public class LoggingMiddleware
 {
     private readonly Logger logger = LogManager.GetCurrentClassLogger();
     private readonly RequestDelegate next;
 
-    public TokenValidationMiddleware(RequestDelegate next) =>
+    public LoggingMiddleware(RequestDelegate next) =>
         this.next = next;
 
     public async Task InvokeAsync(HttpContext context)
     {
-        this.logger.Trace("Token validation middleware invoked");
+        this.logger.Trace("Logging middleware invoked");
         await this.next(context);
     }
 }

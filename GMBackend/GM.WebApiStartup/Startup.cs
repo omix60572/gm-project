@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NLog;
 using System.Reflection;
+using GM.WebApi.Middleware.Extensions;
 
 namespace GM.WebApiStartup;
 
@@ -46,6 +47,7 @@ public class Startup
             app.UseDeveloperExceptionPage();
         }
 
+        app.UseWebApiMiddleware();
         app.UseRouting();
         app.UseCors(OriginsPolicy);
 
