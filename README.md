@@ -27,7 +27,7 @@ npm install
 npm run dev
 ```
 
-### Источник для демо assets (демо список популярных фильмов): Сайт [IXBT Games Блоги Live](https://www.ixbt.com/live/movie/10-samyh-luchshih-filmov-po-ocenkam-na-imdb-zolotaya-desyatka-kino-za-vsyu-istoriyu-kinoindustrii.html)
+### Источник для демо assets (демо список популярных фильмов, SQLite файл БД): Сайт [IXBT Games Блоги Live](https://www.ixbt.com/live/movie/10-samyh-luchshih-filmov-po-ocenkam-na-imdb-zolotaya-desyatka-kino-za-vsyu-istoriyu-kinoindustrii.html)
 
 ### Appsettings.json (формат файла и необходимые настройки):
 - SqlSettings (обязательно к заполнению как и само подключение так и тип используемгого БД провайдера)

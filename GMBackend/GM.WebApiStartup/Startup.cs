@@ -48,6 +48,7 @@ public class Startup
 
         app.UseRouting();
         app.UseCors(OriginsPolicy);
+
         app.UseEndpoints(endpoints => endpoints.MapControllers());
 
         this.logger.Trace("Web API is started");
