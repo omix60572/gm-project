@@ -9,5 +9,6 @@
 	  <ProjectReference Include="..\GM.Logging\GM.Logging.csproj" />
 	  <ProjectReference Include="..\GM.RemoteSearch\GM.RemoteSearch.csproj" />
 	  <ProjectReference Include="..\GM.SharedLibs\GM.SharedLibs.csproj" />
+	  <ProjectReference Include="..\GM.Sql\GM.Sql.csproj" />
 	</ItemGroup>
 </Project>
