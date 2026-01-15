@@ -1,5 +1,12 @@
-﻿namespace GM.CommandHandlers.Movies;
+﻿using GM.Contracts.Commands;
+using GM.Contracts.Commands.Movies;
 
-public class UpdateMovieImageCommandHandler
+namespace GM.CommandHandlers.Movies;
+
+public class UpdateMovieImageCommandHandler : CommandHandlerBase, ICommandHandler<UpdateMovieImageCommand>
 {
+    public Task ExecuteAsync(UpdateMovieImageCommand command, CancellationToken cancellation)
+    {
+        throw new NotImplementedException();
+    }
 }
