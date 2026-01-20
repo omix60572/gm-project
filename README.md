@@ -14,7 +14,8 @@ Demo project (react, typescript, C#, frontend, backend, MS-SQL)
 -- [...]
 # Startup services:
 -- BackgroundServices                   | Запускаемые сервисы
---- GM.MessagingBackendService          | Запуск backend'a для обработки очередей rabbitMQ
+--- GM.MessagingBackgroundService       | Запуск backend'a для обработки очередей rabbitMQ
+--- GM.SchedulerBackgroundService       | Запуск сервиса планировщика джобов
 # Main startup projects:
 - GM.WebApiStartup                      | Запуск web API для работы frontend'a
 ```
@@ -39,4 +40,5 @@ npm run dev
 ### Особенности работы с токенами:
 - При выдаче токена получаем имя приложения которое запрашивает токен
 - Имя приложения для которого может быть выдан токен хранится в таблице Applications
-- Информация о выданных токенах записывается в таблицу ApplicationTokens (на каждое приложение с определенным application name выдается только один действующий токен)
+- На каждое приложение с определенным application name выдается действующий токен
+- Выданный токен может быть отозван используя соответствующее API (отозванный токен будет записан в таблицу RevokedTokens)
