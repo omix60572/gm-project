@@ -4,7 +4,7 @@ using GM.RabbitMessaging.Queues.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace GM.MessagingBackendService;
+namespace GM.MessagingBackgroundService;
 
 public class MessagingBackgroundService(
     IServiceProvider serviceProvider,

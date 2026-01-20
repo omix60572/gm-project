@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 using NLog;
 using NLog.Extensions.Hosting;
 
-namespace GM.MessagingBackendService;
+namespace GM.MessagingBackgroundService;
 
 public static class Program
 {
