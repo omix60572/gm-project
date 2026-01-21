@@ -1,5 +1,5 @@
 ﻿namespace GM.Contracts.Models;
 
-public class ApplicationTokenModel
+public class RevokedTokenModel
 {
 }

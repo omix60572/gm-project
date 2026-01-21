@@ -8,9 +8,12 @@ using Microsoft.EntityFrameworkCore;
 namespace GM.QueryHandlers.Movies;
 
 // TODO: Replace stub implementation
-public class PopularMoviesQueryHandlerStub(IContextFactory contextFactory) : QueryHandlerBase, IQueryHandler<PopularMoviesQuery, MoviesQueryResponse>
+public class PopularMoviesQueryHandlerStub : QueryHandlerBase, IQueryHandler<PopularMoviesQuery, MoviesQueryResponse>
 {
-    private readonly IContextFactory contextFactory = contextFactory;
+    private readonly IContextFactory contextFactory;
+
+    public PopularMoviesQueryHandlerStub(IContextFactory contextFactory) =>
+        this.contextFactory = contextFactory;
 
     public async Task<MoviesQueryResponse> ExecuteAsync(PopularMoviesQuery query, CancellationToken cancellation)
     {
