@@ -32,7 +32,7 @@ public class TokenService : ITokenService
 
         var tokenDescriptor = new JwtSecurityToken(
             claims: claims,
-            expires: DateTime.UtcNow.AddDays(7),
+            expires: DateTime.UtcNow.AddHours(this.settings.ExpireHours),
             signingCredentials: credentials
         );
 
