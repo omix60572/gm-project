@@ -7,9 +7,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GM.QueryHandlers.Movies;
 
-public class MovieQueryHandler(IContextFactory contextFactory) : QueryHandlerBase, IQueryHandler<MovieQuery, MovieQueryResponse>
+public class MovieQueryHandler : QueryHandlerBase, IQueryHandler<MovieQuery, MovieQueryResponse>
 {
-    private readonly IContextFactory contextFactory = contextFactory;
+    private readonly IContextFactory contextFactory;
+
+    public MovieQueryHandler(IContextFactory contextFactory) =>
+        this.contextFactory = contextFactory;
 
     public async Task<MovieQueryResponse> ExecuteAsync(MovieQuery query, CancellationToken cancellation)
     {

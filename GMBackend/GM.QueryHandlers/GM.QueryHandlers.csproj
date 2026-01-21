@@ -9,7 +9,4 @@
 		<ProjectReference Include="..\GM.SharedLibs\GM.SharedLibs.csproj" />
 		<ProjectReference Include="..\GM.Sql\GM.Sql.csproj" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Tokens\" />
-	</ItemGroup>
 </Project>
