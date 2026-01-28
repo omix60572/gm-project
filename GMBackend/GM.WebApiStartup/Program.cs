@@ -54,8 +54,8 @@ public static class Program
             {
                 services
                     .Configure<SqlSettings>(configuration.GetSection(SqlSettings.Section))
-                    .Configure<RemoteSearchSettings>(configuration.GetSection(RemoteSearchSettings.Section))
-                    .Configure<JwtSettings>(configuration.GetSection(JwtSettings.Section));
+                    .Configure<JwtSettings>(configuration.GetSection(JwtSettings.Section))
+                    .ConfigureRemoteSearchSettings(configuration);
 
                 var intermediateProvider = services.BuildServiceProvider();
 
@@ -63,22 +63,16 @@ public static class Program
                     intermediateProvider.GetService<IOptions<SqlSettings>>()?.Value ??
                     throw new ArgumentException("Sql settings is undefined");
 
-                var remoteModuleSettings =
-                    intermediateProvider.GetService<IOptions<RemoteSearchSettings>>()?.Value ??
-                    throw new ArgumentException("Remote module settings is undefined");
-
                 var jwtSettings =
                     intermediateProvider.GetService<IOptions<JwtSettings>>()?.Value ??
                     throw new ArgumentException("Web API JWT settings is undefined");
 
                 services
-                    .AddSingleton(sqlSettings)
-                    .AddSingleton(remoteModuleSettings)
-                    .AddSql()
+                    .AddSql(sqlSettings)
                     .AddQueryHandlers()
                     .AddCommandHandlers()
                     .AddWebApi(jwtSettings)
-                    .AddRemoteModule();
+                    .AddRemoteSearchModule(intermediateProvider);
             })
             .UseNLog();
     }
