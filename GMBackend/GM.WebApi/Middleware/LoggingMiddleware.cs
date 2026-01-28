@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using NLog;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace GM.WebApi.Middleware;
 
@@ -14,7 +14,16 @@ public class LoggingMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
-        this.logger.Trace("Logging middleware invoked");
+        var request = context.Request;
+        var stopwatch = Stopwatch.StartNew();
+
+        this.logger.Trace($"Incoming request: {request.Method} {request.Path}");
+
         await this.next(context);
+
+        stopwatch.Stop();
+        var response = context.Response;
+
+        this.logger.Info($"Request {request.Method} {request.Path}, responded {response.StatusCode} in {stopwatch.ElapsedMilliseconds}ms | UserAgent: {request.Headers.UserAgent}");
     }
 }

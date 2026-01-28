@@ -1,0 +1,62 @@
+﻿using GM.Logging;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using NLog;
+using System.Net;
+
+namespace GM.WebApi.Middleware;
+
+public class ExceptionLoggingMiddleware
+{
+    private readonly Logger logger = LogManager.GetCurrentClassLogger();
+    private readonly RequestDelegate next;
+
+    private const string ExceptionMessage = "Web API request exception thrown";
+
+    public ExceptionLoggingMiddleware(RequestDelegate next) =>
+        this.next = next;
+
+    public async Task InvokeAsync(HttpContext context)
+    {
+        var request = context.Request;
+        var fullRequestPath = $"{request.Path.Value}{request.QueryString}";
+
+        try
+        {
+            await this.next(context);
+        }
+        catch (Exception ex)
+        {
+            this.logger
+                .WithProperty(LoggingFields.Http.StatusCode, context.Response.StatusCode)
+                .WithProperty(LoggingFields.Http.RequestPath, fullRequestPath)
+                .WithProperty(LoggingFields.Http.Method, request.Method)
+                .Error(ex, ExceptionMessage);
+
+            await HandleExceptionAsync(context, ex);
+        }
+    }
+
+    private Task HandleExceptionAsync(HttpContext context, Exception exception)
+    {
+        context.Response.ContentType = "application/json";
+
+        var statusCode = exception switch
+        {
+            // TODO: Add more codes
+            ArgumentException => (int)HttpStatusCode.BadRequest,
+            _ => (int)HttpStatusCode.InternalServerError
+        };
+
+        context.Response.StatusCode = statusCode;
+
+        var response = new
+        {
+            StatusCode = statusCode,
+            Message = ExceptionMessage
+        };
+
+        var jsonResponse = JsonConvert.SerializeObject(response);
+        return context.Response.WriteAsync(jsonResponse);
+    }
+}
