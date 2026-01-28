@@ -63,15 +63,11 @@ public static class Program
                     intermediateProvider.GetService<IOptions<SqlSettings>>()?.Value ??
                     throw new ArgumentException("Sql settings is undefined");
 
-                var jwtSettings =
-                    intermediateProvider.GetService<IOptions<JwtSettings>>()?.Value ??
-                    throw new ArgumentException("Web API JWT settings is undefined");
-
                 services
                     .AddSql(sqlSettings)
                     .AddQueryHandlers()
                     .AddCommandHandlers()
-                    .AddWebApi(jwtSettings)
+                    .AddWebApi(intermediateProvider)
                     .AddRemoteSearchModule(intermediateProvider);
             })
             .UseNLog();
