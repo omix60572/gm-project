@@ -4,6 +4,7 @@ public static class LoggingFields
 {
     public static class Http
     {
+        public const string RequestPath = "request_path";
         public const string RequestBody = "request_body";
         public const string StatusCode = "status_code";
         public const string Method = "method";
