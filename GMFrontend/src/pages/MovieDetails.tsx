@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import SelectedMovieDetailsStub from "../components/SelectedMovieDetailsStub";
-import { getMovieById } from "../services/MoviesApiService";
 import SelectedMovieDetails from "../components/SelectedMovieDetails";
 import type MovieCardModel from "../models/MovieCardModel";
 import ErrorBlock from "../components/common/ErrorBlock";
+import { moviesApiService } from "../services/MoviesApiService";
 
 function MovieDetails() {
   const urlsParts = document.URL.split("/");
@@ -19,7 +19,7 @@ function MovieDetails() {
   useEffect(() => {
     const loadMovie = async () => {
       try {
-        const movieResponse: MovieCardModel = await getMovieById(movieId);
+        const movieResponse: MovieCardModel = await moviesApiService.getMovieById(movieId);
         if (movieResponse !== null && movieResponse !== undefined) {
           setMovie(movieResponse);
         }

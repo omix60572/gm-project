@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer className="text-center text-lg-start bg-body-tertiary text-muted fs-6">
       <div className="text-center p-4">
-        Logo Designed by:&nbsp;
+        Logo Designed by:&nbsp;{" "}
         <a
           className="text-reset fw-bold footer-link"
           href="https://www.freepik.com"
