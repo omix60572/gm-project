@@ -57,7 +57,7 @@ public class TokenService : ITokenService
         }
         catch (Exception ex)
         {
-            this.logger.Error(ex);
+            this.logger.Error(ex, "Token validation failed");
         }
 
         return false;

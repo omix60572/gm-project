@@ -2,12 +2,10 @@
 using GM.Contracts.Queries.Movies;
 using GM.WebApi.Responses;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace GM.WebApi.Controllers;
 
-[Route("movie")]
+[Route("api/movie")]
 public class MovieController(IQueryDispatcher queryDispatcher) : ControllerBase
 {
     private readonly IQueryDispatcher queryDispatcher = queryDispatcher;
