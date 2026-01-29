@@ -19,7 +19,8 @@ public class TokensController : ControllerBase
         if (string.IsNullOrEmpty(applicationName))
             return BadRequest();
 
-        if (await this.tokensFacade.IsValidApplicationNameAsync(applicationName, cancellation))
+        var isValidToken = await this.tokensFacade.IsValidApplicationNameAsync(applicationName, cancellation);
+        if (!isValidToken)
             return Unauthorized();
 
         var applicationToken = this.tokensFacade.GetApplicationToken(applicationName);
