@@ -13,5 +13,6 @@
 	  <ProjectReference Include="..\GM.Contracts\GM.Contracts.csproj" />
 	  <ProjectReference Include="..\GM.Logging\GM.Logging.csproj" />
 	  <ProjectReference Include="..\GM.Services\GM.Services.csproj" />
+	  <ProjectReference Include="..\GM.Sql\GM.Sql.csproj" />
 	</ItemGroup>
 </Project>

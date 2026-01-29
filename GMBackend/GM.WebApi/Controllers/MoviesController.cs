@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GM.WebApi.Controllers;
 
-[Route("movies")]
+[Route("api/movies")]
 public class MoviesController(IQueryDispatcher queryDispatcher) : ControllerBase
 {
     private readonly IQueryDispatcher queryDispatcher = queryDispatcher;
