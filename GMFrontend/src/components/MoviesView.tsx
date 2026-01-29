@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import type MovieCardModel from "../models/MovieCardModel";
-import { getPopularMovies } from "../services/MoviesApiService";
 import MoviesList from "./MoviesList";
 import MovieCardStub from "./MovieCardStub";
 import SearchBar from "./SearchBar";
 import ErrorBlock from "./common/ErrorBlock";
+import { moviesApiService } from "../services/MoviesApiService";
 
 interface MoviesViewProps {
   searchPlaceholder?: string;
@@ -20,7 +20,7 @@ function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
     const loadPopularMovies = async () => {
       try {
         const popularMoviesResponse: MovieCardModel[] =
-          await getPopularMovies();
+          await moviesApiService.getPopularMovies();
 
         if (
           popularMoviesResponse !== null &&

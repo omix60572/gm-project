@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import MoviesList from "./MoviesList";
 import SearchBar from "./SearchBar";
 import type MovieCardModel from "../models/MovieCardModel";
-import { getPopularMovies } from "../services/MoviesApiService";
+import { moviesApiService } from "../services/MoviesApiService";
 
 interface FavoritesViewProps {
   searchPlaceholder?: string;
@@ -18,7 +18,7 @@ function FavoritesView({ searchPlaceholder }: Readonly<FavoritesViewProps>) {
     const loadPopularMovies = async () => {
       try {
         const popularMoviesResponse: MovieCardModel[] =
-          await getPopularMovies();
+          await moviesApiService.getPopularMovies(); // TODO: Replace API call to proper method call
 
         if (
           popularMoviesResponse !== null &&
