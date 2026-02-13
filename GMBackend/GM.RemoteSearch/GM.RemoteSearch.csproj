@@ -5,7 +5,11 @@
 		<Nullable>disable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\GM.Logging\GM.Logging.csproj" />
-	  <ProjectReference Include="..\GM.SharedLibs\GM.SharedLibs.csproj" />
+		<ProjectReference Include="..\GM.Logging\GM.Logging.csproj" />
+		<ProjectReference Include="..\GM.SharedLibs\GM.SharedLibs.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
+		<PackageReference Include="RestSharp" Version="113.1.0" />
 	</ItemGroup>
 </Project>

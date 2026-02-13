@@ -1,6 +1,6 @@
 ﻿using GM.Remote.Enums;
 
-namespace GM.Remote.Settings;
+namespace GM.RemoteSearch.Settings;
 
 public class RemoteSearchSettings
 {
