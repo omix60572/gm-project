@@ -1,8 +1,11 @@
-﻿namespace GM.WebApi.Facades.Interfaces;
+﻿using GM.WebApi.Responses;
+
+namespace GM.WebApi.Facades.Interfaces;
 
 public interface ITokensFacade
 {
-    bool ValidateToken(string tokenString);
+    Task<bool> ValidateTokenAsync(string applicationName, string tokenString, CancellationToken cancellation);
     Task<bool> IsValidApplicationNameAsync(string applicationName, CancellationToken cancellation);
-    string GetApplicationToken(string applicationName);
+    ApplicationTokenResponse GetApplicationToken(string applicationName);
+    Task<bool> RevokeTokenAsync(string applicationName, string tokenString, CancellationToken cancellation);
 }

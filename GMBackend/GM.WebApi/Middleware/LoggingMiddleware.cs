@@ -14,6 +14,8 @@ public class LoggingMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
+        // TODO: Add scoped values for logging messages
+
         var request = context.Request;
         var fullRequestPath = $"{request.Path.Value}{request.QueryString}";
         var stopwatch = Stopwatch.StartNew();

@@ -33,6 +33,7 @@ public class ExceptionLoggingMiddleware
                 .WithProperty(LoggingFields.Http.Method, request.Method)
                 .Error(ex, ExceptionMessage);
 
+            // TODO: Переделать
             await HandleExceptionAsync(context, ex);
         }
     }

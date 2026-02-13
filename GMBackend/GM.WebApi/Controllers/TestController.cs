@@ -7,5 +7,5 @@ public class TestController : ControllerBase
 {
     [HttpGet]
     [Route("get")]
-    public IActionResult GetTest() => Ok("test");
+    public IActionResult GetTest() => Ok(new { Message = "test" });
 }
