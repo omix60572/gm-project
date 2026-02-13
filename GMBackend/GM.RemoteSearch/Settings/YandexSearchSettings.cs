@@ -1,8 +1,8 @@
 ﻿namespace GM.RemoteSearch.Settings;
 
-public class GoogleSearchSettings
+public class YandexSearchSettings
 {
-    public const string Section = "GoogleSearchSettings";
+    public const string Section = "YandexSearchSettings";
 
     public string BaseUrl { get; set; }
     public string ApiKey { get; set; }

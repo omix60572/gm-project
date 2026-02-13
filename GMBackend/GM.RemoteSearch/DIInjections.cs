@@ -1,5 +1,5 @@
 ﻿using GM.Remote.Enums;
-using GM.Remote.Settings;
+using GM.RemoteSearch.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -21,7 +21,7 @@ public static class DIInjections
         if (googleSearchSettings != null)
             services.AddSingleton(googleSearchSettings);
 
-        // TODO: Add remote search module
+        // TODO: Add remote search module classes
 
         return services;
     }
@@ -29,5 +29,6 @@ public static class DIInjections
     public static IServiceCollection ConfigureRemoteSearchSettings(this IServiceCollection services, IConfiguration configuration) =>
         services
             .Configure<RemoteSearchSettings>(configuration.GetSection(RemoteSearchSettings.Section))
-            .Configure<GoogleSearchSettings>(configuration.GetSection(GoogleSearchSettings.Section));
+            .Configure<GoogleSearchSettings>(configuration.GetSection(GoogleSearchSettings.Section))
+            .Configure<YandexSearchSettings>(configuration.GetSection(YandexSearchSettings.Section));
 }
