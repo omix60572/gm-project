@@ -14,18 +14,12 @@ public class TokensController : ControllerBase
 
     [HttpGet]
     [Route("get/{applicationName}")]
-    public async Task<IActionResult> GetToken(string applicationName, CancellationToken cancellation)
-    {
-        if (string.IsNullOrEmpty(applicationName))
-            return BadRequest();
+    public async Task<IActionResult> GetToken(string applicationName) =>
+        Ok(this.tokensFacade.GetApplicationToken(applicationName));
+    
 
-        var isValidToken = await this.tokensFacade.IsValidApplicationNameAsync(applicationName, cancellation);
-        if (!isValidToken)
-            return Unauthorized();
-
-        var applicationToken = this.tokensFacade.GetApplicationToken(applicationName);
-        return Ok(new ApplicationTokenResponse { ApplicationToken = applicationToken });
-    }
-
-    // TODO: Revoke tokens API
+    [HttpPost]
+    [Route("revoke/{applicationName}/{token}")]
+    public async Task<IActionResult> RevokeToken(string applicationName, string token, CancellationToken cancellation) =>
+        Ok(new { Success = await this.tokensFacade.RevokeTokenAsync(applicationName, token, cancellation) });
 }

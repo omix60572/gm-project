@@ -18,6 +18,7 @@ public class Startup
     {
         this.logger.Trace("Web API configuring services at startup");
 
+        
         // Add CORS policy
         services.AddCors(options =>
         {
@@ -47,12 +48,11 @@ public class Startup
             app.UseDeveloperExceptionPage();
         }
 
-        app.UseWebApiMiddleware();
         app.UseRouting();
         app.UseCors(OriginsPolicy);
-
+        app.UseWebApiMiddleware();
         app.UseEndpoints(endpoints => endpoints.MapControllers());
-
+        
         this.logger.Trace("Web API is started");
     }
 }
