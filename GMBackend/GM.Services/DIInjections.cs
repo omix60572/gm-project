@@ -16,7 +16,7 @@ public static class DIInjections
 
         services
             .AddSingleton(jwtSettings)
-            .AddSingleton<ITokenService, TokenService>();
+            .AddSingleton<ITokensService, TokenService>();
 
         return services;
     }
