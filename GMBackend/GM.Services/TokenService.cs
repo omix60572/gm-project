@@ -8,7 +8,7 @@ using System.Text;
 
 namespace GM.Services;
 
-public class TokenService : ITokenService
+public class TokenService : ITokensService
 {
     private readonly JwtSettings settings;
     private readonly Logger logger;
@@ -33,12 +33,17 @@ public class TokenService : ITokenService
         var tokenDescriptor = new JwtSecurityToken(
             claims: claims,
             expires: DateTime.UtcNow.AddHours(this.settings.ExpireHours),
-            signingCredentials: credentials
+            signingCredentials: credentials,
+            audience: this.settings.ValidAudience,
+            issuer: this.settings.ValidIssuer
         );
 
         var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
         return tokenString;
     }
+
+    public uint GetExpireHours() =>
+        this.settings.ExpireHours;
 
     public bool ValidateToken(string token)
     {
@@ -48,6 +53,8 @@ public class TokenService : ITokenService
             var validationParameters = new TokenValidationParameters
             {
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.settings.Key)),
+                ValidIssuer = this.settings.ValidIssuer,
+                ValidAudience = this.settings.ValidAudience,
                 ClockSkew = TimeSpan.Zero // No tolerance
             };
 
