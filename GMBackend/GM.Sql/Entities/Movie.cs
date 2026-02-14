@@ -6,6 +6,6 @@ public class Movie
     public string ImageUrl { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
-    public ushort ReleaseYear { get; set; }
+    public short ReleaseYear { get; set; }
     public string SourceUrl { get; set; }
 }

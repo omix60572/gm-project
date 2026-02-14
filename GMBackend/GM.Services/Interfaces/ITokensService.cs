@@ -5,4 +5,5 @@ public interface ITokensService
     string CreateToken(string applicationName);
     bool ValidateToken(string token);
     uint GetExpireHours();
+    DateTime GetExpireDateTime(string tokenString);
 }

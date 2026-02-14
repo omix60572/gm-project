@@ -1,9 +1,11 @@
-﻿using GM.Services.Interfaces;
-using GM.Sql.Entities;
-using GM.Sql.Factories.Interfaces;
+﻿using GM.Contracts.Commands;
+using GM.Contracts.Commands.Tokens;
+using GM.Contracts.Queries;
+using GM.Contracts.Queries.Application;
+using GM.Contracts.Queries.Tokens;
+using GM.Services.Interfaces;
 using GM.WebApi.Facades.Interfaces;
 using GM.WebApi.Responses;
-using Microsoft.EntityFrameworkCore;
 using NLog;
 
 namespace GM.WebApi.Facades;
@@ -11,14 +13,16 @@ namespace GM.WebApi.Facades;
 public class TokensFacade : ITokensFacade
 {
     private readonly ITokensService tokensService;
-    private readonly IContextFactory contextFactory;
+    private readonly IQueryDispatcher queryDispatcher;
+    private readonly ICommandDispatcher commandDispatcher;
 
     private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-    public TokensFacade(ITokensService tokensService, IContextFactory contextFactory)
+    public TokensFacade(ITokensService tokensService, IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
     {
         this.tokensService = tokensService;
-        this.contextFactory = contextFactory;
+        this.queryDispatcher = queryDispatcher;
+        this.commandDispatcher = commandDispatcher;
     }
 
     public ApplicationTokenResponse GetApplicationToken(string applicationName)
@@ -32,35 +36,32 @@ public class TokensFacade : ITokensFacade
 
     public async Task<bool> IsValidApplicationNameAsync(string applicationName, CancellationToken cancellation)
     {
-        await using var context = this.contextFactory.CreateContext();
-        var application = await context
-            .Set<Application>()
-            .FirstOrDefaultAsync(x => x.ApplicationName == applicationName, cancellation);
+        var application = await this.queryDispatcher.ExecuteAsync<ApplicationQuery, ApplicationQueryResponse>(
+            new ApplicationQuery { ApplicationName = applicationName },
+            cancellation);
 
         return application != null;
     }
 
     public async Task<bool> RevokeTokenAsync(string applicationName, string tokenString, CancellationToken cancellation)
     {
-        await using var context = this.contextFactory.CreateContext();
-        var existingRevokedToken = await context
-            .Set<RevokedToken>()
-            .Where(x => x.ApplicationName == applicationName)
-            .FirstOrDefaultAsync(x => x.Token == tokenString, cancellation);
+        var existingRevokedToken = await this.queryDispatcher.ExecuteAsync<RevokedTokenQuery, RevokedTokenQueryResponse>(
+            new RevokedTokenQuery { ApplicationName = applicationName, Token = tokenString },
+            cancellation);
+        
         if (existingRevokedToken != null)
             return true;
 
         try
         {
-            var revokedToken = new RevokedToken
+            var revokedTokenCommand = new SaveRevokedTokenCommand
             {
                 ApplicationName = applicationName,
-                Token = tokenString
+                Token = tokenString,
+                Expire = this.tokensService.GetExpireDateTime(tokenString)
             };
 
-            context.Add(revokedToken);
-            await context.SaveChangesAsync(cancellation);
-
+            await this.commandDispatcher.ExecuteAsync(revokedTokenCommand, cancellation);
             return true;
         }
         catch (Exception ex)
@@ -73,11 +74,9 @@ public class TokensFacade : ITokensFacade
 
     public async Task<bool> ValidateTokenAsync(string applicationName, string tokenString, CancellationToken cancellation)
     {
-        await using var context = this.contextFactory.CreateContext();
-        var revokedToken = await context
-            .Set<RevokedToken>()
-            .Where(x => x.ApplicationName == applicationName)
-            .FirstOrDefaultAsync(x => x.Token == tokenString, cancellation);
+        var revokedToken = await this.queryDispatcher.ExecuteAsync<RevokedTokenQuery, RevokedTokenQueryResponse>(
+            new RevokedTokenQuery { ApplicationName = applicationName, Token = tokenString },
+            cancellation);
 
         if (revokedToken != null)
             return false;
