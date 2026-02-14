@@ -69,4 +69,10 @@ public class TokenService : ITokensService
 
         return false;
     }
+
+    public DateTime GetExpireDateTime(string tokenString)
+    {
+        var token = new JwtSecurityToken(tokenString);
+        return token.ValidTo;
+    }
 }
