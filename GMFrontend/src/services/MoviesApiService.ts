@@ -1,30 +1,29 @@
+import { GetMovieApi, GetPopularMoviesApi } from "../common/Endpoints";
 import type MovieCardModel from "../models/MovieCardModel";
-import { ApiBaseUrl } from "./Endpoints";
+import ApiFacade from "../facades/ApiFacade";
 
-/**
- * MoviesApiService handles api requests to retrieving movies data
- */
 class MoviesApiService {
-  /**
-   * Retrieving popular movies data
-   */
-  async getPopularMovies(): Promise<MovieCardModel[]> {
-    const response = await fetch(`${ApiBaseUrl}/movies/popular`);
-    const resultJson = await response.json();
-    return resultJson.movies as Promise<MovieCardModel[]>;
+  private static Instance: MoviesApiService | null = null;
+
+  private readonly apiFacade: ApiFacade;
+
+  private constructor() {
+    this.apiFacade = ApiFacade.getInstance();
+  }
+  public static getInstance(): MoviesApiService {
+    MoviesApiService.Instance ??= new MoviesApiService();
+    return MoviesApiService.Instance;
   }
 
-  /**
-   * Retrieving movie data
-   * @param movieId number - Movie id to get movie data
-   */
-  async getMovieById(movieId: number): Promise<MovieCardModel> {
-    const response = await fetch(`${ApiBaseUrl}/movie/${movieId}`);
-    const resultJson = await response.json();
-    return (await resultJson.movie) as MovieCardModel;
+  public async getPopularMovies(): Promise<MovieCardModel[]> {
+    const response = await this.apiFacade.get<{ movies: MovieCardModel[] }>(GetPopularMoviesApi);
+    return response.movies;
+  }
+
+  public async getMovieById(movieId: number): Promise<MovieCardModel> {
+    const response = await this.apiFacade.get<{ movie: MovieCardModel }>(`${GetMovieApi}/${movieId}`);
+    return response.movie;
   }
 }
 
-// Export singleton instance
-export const moviesApiService = new MoviesApiService();
 export default MoviesApiService;
