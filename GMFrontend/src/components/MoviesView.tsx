@@ -4,7 +4,7 @@ import MoviesList from "./MoviesList";
 import MovieCardStub from "./MovieCardStub";
 import SearchBar from "./SearchBar";
 import ErrorBlock from "./common/ErrorBlock";
-import { moviesApiService } from "../services/MoviesApiService";
+import MoviesApiService from "../services/MoviesApiService";
 
 interface MoviesViewProps {
   searchPlaceholder?: string;
@@ -14,6 +14,7 @@ function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
   const [movies, setMovies] = useState<MovieCardModel[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const moviesApiService = MoviesApiService.getInstance();
 
   // Second param just empty arr, for single call only on component creation (render)
   useEffect(() => {

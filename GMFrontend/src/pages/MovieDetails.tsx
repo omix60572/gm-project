@@ -3,7 +3,7 @@ import SelectedMovieDetailsStub from "../components/SelectedMovieDetailsStub";
 import SelectedMovieDetails from "../components/SelectedMovieDetails";
 import type MovieCardModel from "../models/MovieCardModel";
 import ErrorBlock from "../components/common/ErrorBlock";
-import { moviesApiService } from "../services/MoviesApiService";
+import MoviesApiService from "../services/MoviesApiService";
 
 function MovieDetails() {
   const urlsParts = document.URL.split("/");
@@ -15,6 +15,7 @@ function MovieDetails() {
   const [movie, setMovie] = useState<MovieCardModel>();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const moviesApiService = MoviesApiService.getInstance();
 
   useEffect(() => {
     const loadMovie = async () => {

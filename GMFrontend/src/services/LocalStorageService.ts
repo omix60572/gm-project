@@ -1,52 +1,37 @@
-// Theme storage keys
-const ThemeStorageKey = 'selectedTheme';
-const DefaultTheme = 'dark';
-
-// Theme types
-export type AppColorTheme = 'light' | 'dark';
-
-/**
- * LocalStorageService handles saving and retrieving data from localStorage
- */
 class LocalStorageService {
-  /**
-   * Saves selected theme to localStorage
-   * @param theme AppColorTheme - Theme to save ('light' or 'dark')
-   */
-  saveTheme(theme: AppColorTheme): void {
+  private static Instance: LocalStorageService | null = null;
+
+  private constructor() {}
+  public static getInstance(): LocalStorageService {
+    LocalStorageService.Instance ??= new LocalStorageService();
+    return LocalStorageService.Instance;
+  }
+
+  public saveValue(key: string, value: any) {
     try {
-      localStorage.setItem(ThemeStorageKey, theme);
+      localStorage.setItem(key, value);
     } catch (error) {
-      console.error('Failed to save theme value to localStorage:', error);
+      console.error(`Failed to save value to localStorage with key ${key} and value ${value}`, error);
     }
   }
 
-  /**
-   * Retrieves saved theme from localStorage
-   * @returns AppColorTheme - The saved theme ('light' or 'dark') or default theme if not found
-   */
-  getTheme(): AppColorTheme {
+  public getValue(key: string): string | null {
     try {
-      const savedTheme = localStorage.getItem(ThemeStorageKey);
-      return (savedTheme === 'light' || savedTheme === 'dark') ? savedTheme : DefaultTheme;
+      return localStorage.getItem(key);
     } catch (error) {
-      console.error('Failed to get theme value from localStorage:', error);
-      return DefaultTheme;
+      console.error(`Failed to get saved value from localStorage with key: ${key}`, error);
     }
+
+    return null;
   }
 
-  /**
-   * Clears saved theme in localStorage
-   */
-  clearTheme(): void {
+  public clearValue(key: string) {
     try {
-      localStorage.removeItem(ThemeStorageKey);
+      localStorage.removeItem(key);
     } catch (error) {
-      console.error('Failed to clear theme value in localStorage:', error);
+      console.error(`Failed to clear value in localStorage with key: ${key}`, error);
     }
   }
 }
 
-// Export singleton instance
-export const localStorageService = new LocalStorageService();
 export default LocalStorageService;
