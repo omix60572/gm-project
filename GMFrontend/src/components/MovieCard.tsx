@@ -1,4 +1,6 @@
 import imgMoviePlaceholder from "../assets/stock-photo-black-background.jpg";
+import { MovieDetailsRoute } from "../common/Routes";
+import GetCurrentLocation from "../common/Utils";
 import type MovieCardModel from "../models/MovieCardModel";
 import IconButtonWithTooltip from "./common/IconButtonWithTooltip";
 
@@ -57,7 +59,7 @@ function MovieCard({ model }: Readonly<MovieCardProps>) {
           buttonClass="ms-2"
           buttonIconClass="bi-info-circle-fill"
           onButtonClick={() => {
-            document.location.href = `${document.location.origin}/moviedetails/${model.id}`;
+            document.location.href = `${GetCurrentLocation()}/${MovieDetailsRoute}/${model.id}`;
           }}
         />
       </div>
