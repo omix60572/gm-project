@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using GM.Logging;
+using Microsoft.AspNetCore.Http;
 using NLog;
 using System.Diagnostics;
 
@@ -14,11 +15,18 @@ public class LoggingMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
-        // TODO: Add scoped values for logging messages
-
         var request = context.Request;
         var fullRequestPath = $"{request.Path.Value}{request.QueryString}";
         var stopwatch = Stopwatch.StartNew();
+
+        // TODO: Исправить, не работает
+        var properties = new Dictionary<string, string>
+        {
+            { LoggingFields.Http.RequestPath, fullRequestPath },
+            { LoggingFields.Http.Method, request.Method }
+        };
+
+        using var _ = ScopeContext.PushProperties(properties);
 
         this.logger.Trace($"Incoming request: {request.Method} {request.Path}");
         await this.next(context);

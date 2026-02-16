@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import axios from "axios";
 import { ApiBaseUrl, GetTokenApi } from "../common/Endpoints";
 import { AppNameHeader } from "../common/Headers";
-import { FrontendAppName } from "../common/CommonConsts";
+import { FrontendAppName } from "../common/CommonConst";
 import CookieStorageService from "../services/CookieStorageService";
 import { CookieStorageAppTokenKey } from "../common/CookieStorageKeys";
 

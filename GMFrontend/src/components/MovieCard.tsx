@@ -1,17 +1,41 @@
 import imgMoviePlaceholder from "../assets/stock-photo-black-background.jpg";
 import { MovieDetailsRoute } from "../common/Routes";
-import GetCurrentLocation from "../common/Utils";
 import type MovieCardModel from "../models/MovieCardModel";
 import IconButtonWithTooltip from "./common/IconButtonWithTooltip";
+import { useEffect, useState } from "react";
+import FavoritesStorageFacade from "../facades/FavoritesStorageFacade";
+import FavoriteMovie from "../models/FavoriteMovie";
+import UrlUtils from "../common/UrlUtils";
 
 interface MovieCardProps {
   model: MovieCardModel;
 }
 
 function MovieCard({ model }: Readonly<MovieCardProps>) {
+  const favoritesStorageFacade = FavoritesStorageFacade.getInstance();
+
+  const [isFavorite, setIsFavorite] = useState(false);
   const onLikeClick = () => {
-    console.log("Like button clicked");
+    if (isFavorite) {
+      setIsFavorite(false);
+      favoritesStorageFacade.removeFromFavorites(model.id);
+    } else {
+      setIsFavorite(true);
+      favoritesStorageFacade.addToFavorites(new FavoriteMovie(model.id, model.title));
+    }
   };
+
+  // Init
+  useEffect(() => {
+    const initFavoriteStatus = () => {
+      const favoriteMovie = favoritesStorageFacade.getFromFavorites(model.id)
+      if (favoriteMovie !== null) {
+        setIsFavorite(true);
+      }
+    };
+
+    initFavoriteStatus();
+  }, []);
 
   const movieTitle = model.title.length > 0 ? model.title : "No title";
 
@@ -41,8 +65,8 @@ function MovieCard({ model }: Readonly<MovieCardProps>) {
           Release year: {model.releaseYear}
         </p>
         <IconButtonWithTooltip
-          text="Add to favorites"
-          buttonColor="primary"
+          text={isFavorite ? "Remove from favorites" : "Add to favorites"}
+          buttonColor={isFavorite ? "danger" : "primary"}
           buttonIconClass="bi-bookmark-heart-fill"
           onButtonClick={onLikeClick}
         />
@@ -59,7 +83,7 @@ function MovieCard({ model }: Readonly<MovieCardProps>) {
           buttonClass="ms-2"
           buttonIconClass="bi-info-circle-fill"
           onButtonClick={() => {
-            document.location.href = `${GetCurrentLocation()}/${MovieDetailsRoute}/${model.id}`;
+            document.location.href = `${UrlUtils.getCurrentLocation()}/${MovieDetailsRoute}/${model.id}`;
           }}
         />
       </div>

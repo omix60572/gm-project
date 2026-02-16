@@ -18,19 +18,25 @@ public class Startup
     {
         this.logger.Trace("Web API configuring services at startup");
 
-        
-        // Add CORS policy
-        services.AddCors(options =>
+        if (true)
         {
-            options.AddPolicy(OriginsPolicy,
-                builder =>
-                {
-                    builder
-                        .AllowAnyOrigin()
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
-                });
-        });
+            // Add DEV CORS policy
+            services.AddCors(options =>
+            {
+                options.AddPolicy(OriginsPolicy,
+                    builder =>
+                    {
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
+        }
+        else
+        {
+            // TODO: Add production ready cors policy
+        }
 
         services
             .AddControllers()

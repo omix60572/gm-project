@@ -14,7 +14,10 @@ public class MoviesController(IQueryDispatcher queryDispatcher) : ControllerBase
     [Route("popular")]
     public async Task<IActionResult> GetPopularMovies(CancellationToken cancellation)
     {
-        var movies = await this.queryDispatcher.ExecuteAsync<PopularMoviesQuery, MoviesQueryResponse>(new PopularMoviesQuery(), cancellation);
+        var movies = await this.queryDispatcher.ExecuteAsync<PopularMoviesQuery, MoviesQueryResponse>(
+            new PopularMoviesQuery(),
+            cancellation);
+
         return Ok(new MoviesResponse { Movies = movies.Movies });
     }
 }

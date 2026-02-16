@@ -1,6 +1,6 @@
 import axios, { type AxiosInstance } from "axios";
 import { ApiBaseUrl } from "../common/Endpoints";
-import { FrontendAppName } from "../common/CommonConsts";
+import { FrontendAppName } from "../common/CommonConst";
 import { AppNameHeader, AppTokenHeader } from "../common/Headers";
 import CookieStorageService from "../services/CookieStorageService";
 import { CookieStorageAppTokenKey } from "../common/CookieStorageKeys";
