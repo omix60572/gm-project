@@ -9,7 +9,11 @@ class LocalStorageService {
 
   public saveValue(key: string, value: any) {
     try {
-      localStorage.setItem(key, value);
+      if (typeof value === 'string') {
+        localStorage.setItem(key, value);
+      } else {
+        localStorage.setItem(key, JSON.stringify(value));
+      }
     } catch (error) {
       console.error(`Failed to save value to localStorage with key ${key} and value ${value}`, error);
     }

@@ -6,7 +6,7 @@ import Favorites from "../pages/Favorites";
 import Footer from "./Footer";
 import LocalStorageService from "../services/LocalStorageService";
 import { LocalStorageThemeKey } from "../common/LocalStorageKeys";
-import { ThemeValueDark, ThemeValueLight, ThemeValueStorageKey } from "../common/CommonConsts";
+import { ThemeValueDark, ThemeValueLight, ThemeValueStorageKey } from "../common/CommonConst";
 
 interface AppContentProps {
   body: HTMLElement;

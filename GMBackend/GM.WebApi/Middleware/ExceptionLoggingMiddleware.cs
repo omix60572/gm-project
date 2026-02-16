@@ -27,13 +27,15 @@ public class ExceptionLoggingMiddleware
         }
         catch (Exception ex)
         {
+            var statusCode = context.Response.StatusCode.ToString();
             this.logger
-                .WithProperty(LoggingFields.Http.StatusCode, context.Response.StatusCode)
+                .WithProperty(LoggingFields.Http.StatusCode, statusCode)
                 .WithProperty(LoggingFields.Http.RequestPath, fullRequestPath)
                 .WithProperty(LoggingFields.Http.Method, request.Method)
                 .Error(ex, ExceptionMessage);
+            // https://dev.to/farrukh_rehman/lesson-13a-centralized-error-handling-validation-backend-29ip
 
-            // TODO: Переделать
+
             await HandleExceptionAsync(context, ex);
         }
     }
@@ -44,7 +46,6 @@ public class ExceptionLoggingMiddleware
 
         var statusCode = exception switch
         {
-            // TODO: Add more codes
             ArgumentException => (int)HttpStatusCode.BadRequest,
             _ => (int)HttpStatusCode.InternalServerError
         };

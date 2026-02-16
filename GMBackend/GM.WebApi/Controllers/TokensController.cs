@@ -1,5 +1,4 @@
 ﻿using GM.WebApi.Facades.Interfaces;
-using GM.WebApi.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GM.WebApi.Controllers;
