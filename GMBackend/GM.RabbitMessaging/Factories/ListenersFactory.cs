@@ -5,9 +5,12 @@ using GM.RabbitMessaging.Queues.Interfaces;
 
 namespace GM.RabbitMessaging.Factories;
 
-public class ListenersFactory(IMessagingSettingsProvider settingsProvider) : IListenersFactory
+public class ListenersFactory : IListenersFactory
 {
-    private readonly IMessagingSettingsProvider settingsProvider = settingsProvider;
+    private readonly IMessagingSettingsProvider settingsProvider;
+
+    public ListenersFactory(IMessagingSettingsProvider settingsProvider) =>
+        this.settingsProvider = settingsProvider;
 
     public IQueueListener<T> GetListener<T>() where T : IQueueMessage =>
         new QueueListener<T>(this.settingsProvider.GetListenerDelay());

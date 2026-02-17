@@ -1,6 +1,6 @@
 ﻿using GM.CommandHandlers;
 using GM.QueryHandlers;
-using GM.Remote;
+using GM.RemoteSearch;
 using GM.Services.Settings;
 using GM.Sql;
 using GM.WebApi;

@@ -1,4 +1,4 @@
-﻿namespace GM.Remote.Enums;
+﻿namespace GM.RemoteSearch.Enums;
 
 public enum ImageSearchProviders
 {

@@ -2,12 +2,15 @@
 
 namespace GM.RabbitMessaging.Providers;
 
-public class MessagingSettingsProvider(MessagingSettings settings) : IMessagingSettingsProvider
+public class MessagingSettingsProvider : IMessagingSettingsProvider
 {
-    private readonly MessagingSettings settings = settings;
+    private readonly MessagingSettings settings;
+
+    public MessagingSettingsProvider(MessagingSettings settings) =>
+        this.settings = settings;
 
     public string GetConnectionString() =>
-        settings.ConnectionString;
+        this.settings.ConnectionString;
 
     public string GetDefaultExchange() =>
         this.settings.DefaultExchange;

@@ -3,7 +3,7 @@
 namespace GM.WebApi.Controllers;
 
 [Route("api/test")]
-public class TestController : ControllerBase
+public class TestController : BaseController
 {
     [HttpGet]
     [Route("get")]

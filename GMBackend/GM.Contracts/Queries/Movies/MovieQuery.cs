@@ -2,5 +2,5 @@
 
 public class MovieQuery : IQuery
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
 }

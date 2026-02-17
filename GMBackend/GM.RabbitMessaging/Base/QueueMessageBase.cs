@@ -15,9 +15,11 @@ public abstract class QueueMessageBase
         this.body = null;
     }
 
-    protected QueueMessageBase(BasicGetResult getResult) => this.getResult = getResult;
+    protected QueueMessageBase(BasicGetResult getResult) =>
+        this.getResult = getResult;
 
-    protected QueueMessageBase(string body) => this.body = body;
+    protected QueueMessageBase(string body) =>
+        this.body = body;
 
     public string GetAsString() =>
         this.getResult != null ? Encoding.UTF8.GetString(this.getResult.Body.ToArray()) : this.body;
@@ -34,5 +36,6 @@ public abstract class QueueMessageBase
         return JsonConvert.SerializeObject(queueMessage);
     }
 
-    public BasicGetResult GetResult() => this.getResult;
+    public BasicGetResult GetResult() =>
+        this.getResult;
 }
