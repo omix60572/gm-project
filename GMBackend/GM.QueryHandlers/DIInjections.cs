@@ -18,6 +18,7 @@ public static class DIInjections
             // Movies
             .AddTransient<IQueryHandler<PopularMoviesQuery, MoviesQueryResponse>, PopularMoviesQueryHandlerStub>()
             .AddTransient<IQueryHandler<MoviesSearchQuery, MoviesQueryResponse>, MoviesSearchQueryHandlerStub>()
+            .AddTransient<IQueryHandler<MoviesQuery, MoviesQueryResponse>, MoviesQueryHandler>()
             .AddTransient<IQueryHandler<MovieQuery, MovieQueryResponse>, MovieQueryHandler>()
             // Tokens
             .AddTransient<IQueryHandler<RevokedTokenQuery, RevokedTokenQueryResponse>, RevokedTokenQueryHandler>()

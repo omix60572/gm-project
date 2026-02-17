@@ -1,10 +1,10 @@
-﻿using GM.Remote.Enums;
+﻿using GM.RemoteSearch.Enums;
 using GM.RemoteSearch.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace GM.Remote;
+namespace GM.RemoteSearch;
 
 public static class DIInjections
 {

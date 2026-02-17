@@ -5,9 +5,12 @@ using RabbitMQ.Client;
 
 namespace GM.RabbitMessaging.Factories;
 
-public class ChannelsFactory(IMessagingSettingsProvider settingsProvider) : IChannelsFactory
+public class ChannelsFactory : IChannelsFactory
 {
-    private readonly IMessagingSettingsProvider settingsProvider = settingsProvider;
+    private readonly IMessagingSettingsProvider settingsProvider;
+
+    public ChannelsFactory(IMessagingSettingsProvider settingsProvider) =>
+        this.settingsProvider = settingsProvider;
 
     public IModel TryGetChannel(IConnection connection, string queueName)
     {
