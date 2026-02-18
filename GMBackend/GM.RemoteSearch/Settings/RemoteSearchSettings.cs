@@ -1,4 +1,4 @@
-﻿using GM.Remote.Enums;
+﻿using GM.RemoteSearch.Enums;
 
 namespace GM.RemoteSearch.Settings;
 

@@ -18,7 +18,7 @@ public class Startup
     {
         this.logger.Trace("Web API configuring services at startup");
 
-        if (true)
+        if (true) // TODO: Fix it already
         {
             // Add DEV CORS policy
             services.AddCors(options =>

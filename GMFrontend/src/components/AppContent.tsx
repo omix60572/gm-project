@@ -6,7 +6,7 @@ import Favorites from "../pages/Favorites";
 import Footer from "./Footer";
 import LocalStorageService from "../services/LocalStorageService";
 import { LocalStorageThemeKey } from "../common/LocalStorageKeys";
-import { ThemeValueDark, ThemeValueLight, ThemeValueStorageKey } from "../common/CommonConst";
+import { ThemeValueDark, ThemeValueLight, ThemeAttributeValue } from "../common/CommonConst";
 
 interface AppContentProps {
   body: HTMLElement;
@@ -18,18 +18,18 @@ function AppContent({ body }: Readonly<AppContentProps>) {
   const currentTheme = localStorageService.getValue(LocalStorageThemeKey);
   if (currentTheme !== null) {
     body.setAttribute(
-      ThemeValueStorageKey,
+      ThemeAttributeValue,
       currentTheme
     );
   }
 
   const switchTheme = () => {
-    const currentMode = body.getAttribute(ThemeValueStorageKey);
+    const currentMode = body.getAttribute(ThemeAttributeValue);
     const newColorMode = currentMode === ThemeValueLight ? ThemeValueDark : ThemeValueLight;
     localStorageService.saveValue(LocalStorageThemeKey, newColorMode);
 
     body.setAttribute(
-      ThemeValueStorageKey,
+      ThemeAttributeValue,
       newColorMode
     );
   };

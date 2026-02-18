@@ -1,4 +1,4 @@
-import { GetMovieApi, GetPopularMoviesApi } from "../common/Endpoints";
+import { GetMovieApi, GetMoviesApi, GetPopularMoviesApi } from "../common/Endpoints";
 import type MovieCardModel from "../models/MovieCardModel";
 import ApiFacade from "../facades/ApiFacade";
 import FavoritesStorageFacade from "../facades/FavoritesStorageFacade";
@@ -28,9 +28,16 @@ class MoviesApiService {
     return response.movie;
   }
 
-  //public async getFavoritesMovies(): Promise<MovieCardModel[]> {
-    //const favoritesMovies = this.favoritesStorageFacade.getAllFavorites();
-  //}
+  public async getFavoritesMovies(): Promise<MovieCardModel[]> {
+    const favoritesMovies = this.favoritesStorageFacade.getAllFavorites();
+    const ids: number[] = [];
+    favoritesMovies.forEach(x => {
+      ids.push(x.id);
+    });
+
+    const response = await this.apiFacade.get<{ movies: MovieCardModel[] }>(GetMoviesApi, { Ids: ids });
+    return response.movies;
+  }
 }
 
 export default MoviesApiService;

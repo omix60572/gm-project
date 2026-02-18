@@ -75,7 +75,7 @@ function MovieCard({ model }: Readonly<MovieCardProps>) {
           buttonColor="primary"
           buttonClass="ms-2"
           buttonIconClass="bi-eyeglasses"
-          onButtonClick={() => {}}
+          onButtonClick={() => { }}
         />
         <IconButtonWithTooltip
           text="About the movie"
@@ -83,7 +83,7 @@ function MovieCard({ model }: Readonly<MovieCardProps>) {
           buttonClass="ms-2"
           buttonIconClass="bi-info-circle-fill"
           onButtonClick={() => {
-            document.location.href = `${UrlUtils.getCurrentLocation()}/${MovieDetailsRoute}/${model.id}`;
+            UrlUtils.changeCurrentLocation(`${UrlUtils.getCurrentLocation()}/${MovieDetailsRoute}/${model.id}`);
           }}
         />
       </div>
