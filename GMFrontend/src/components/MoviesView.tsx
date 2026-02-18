@@ -5,6 +5,10 @@ import MovieCardStub from "./MovieCardStub";
 import SearchBar from "./SearchBar";
 import ErrorBlock from "./common/ErrorBlock";
 import MoviesApiService from "../services/MoviesApiService";
+import { StringEmpty } from "../common/CommonConst";
+import StringUtils from "../common/StringUtils";
+import LoggingFacade from "../facades/LoggingFacade";
+import Utils from "../common/Utils";
 
 interface MoviesViewProps {
   searchPlaceholder?: string;
@@ -12,9 +16,10 @@ interface MoviesViewProps {
 
 function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
   const [movies, setMovies] = useState<MovieCardModel[]>([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(StringEmpty);
   const [loading, setLoading] = useState(true);
   const moviesApiService = MoviesApiService.getInstance();
+  const logging = LoggingFacade.getInstance();
 
   // Second param just empty arr, for single call only on component creation (render)
   useEffect(() => {
@@ -23,13 +28,11 @@ function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
         const popularMoviesResponse: MovieCardModel[] =
           await moviesApiService.getPopularMovies();
 
-        if (
-          popularMoviesResponse !== null &&
-          popularMoviesResponse !== undefined
-        )
+        if (!Utils.isNullOrUndefined(popularMoviesResponse)) {
           setMovies(popularMoviesResponse);
+        }
       } catch (e) {
-        console.log(e);
+        logging.error("Failed to load the movies...", e);
         setError("Failed to load the movies...");
       } finally {
         setLoading(false);
@@ -40,12 +43,13 @@ function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
   }, []);
 
   const handleResult = (movies: MovieCardModel[], error: string) => {
-    let errorMessage = "";
+    let errorMessage = StringEmpty;
 
-    if (error !== null && error !== undefined && error !== "")
+    if (!StringUtils.isEmpty(error)) {
       errorMessage = error;
-    else if (movies === null || movies.length === 0)
+    } else if (movies === null || movies.length === 0) {
       errorMessage = "Movies list is empty";
+    }
 
     return errorMessage.length > 0 ? (
       <ErrorBlock text={errorMessage} />
