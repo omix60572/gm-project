@@ -7,6 +7,7 @@ import CookieStorageService from "../services/CookieStorageService";
 import { CookieStorageAppTokenKey } from "../common/CookieStorageKeys";
 import StringUtils from "../common/StringUtils";
 import Utils from "../common/Utils";
+import LoggingFacade from "../facades/LoggingFacade";
 
 interface AuthComponentProps {
   children: ReactNode;
@@ -15,6 +16,7 @@ interface AuthComponentProps {
 function AuthComponent({ children }: Readonly<AuthComponentProps>) {
   const [loading, setLoading] = useState(true);
   const cookieStorageService = CookieStorageService.getInstance();
+  const logging = LoggingFacade.getInstance();
 
   const api = axios.create({
     baseURL: ApiBaseUrl,
@@ -27,7 +29,7 @@ function AuthComponent({ children }: Readonly<AuthComponentProps>) {
   const saveApiTokenToCookie = (appToken: string, expireHours: number) => {
     cookieStorageService
       .saveValue(CookieStorageAppTokenKey, appToken, expireHours)
-      .catch((error) => console.log(error))
+      .catch((error) => logging.error("Failed to save api token to cookies", error))
       .finally(() => setLoading(false));
   };
 
@@ -39,11 +41,11 @@ function AuthComponent({ children }: Readonly<AuthComponentProps>) {
       .get(`${GetTokenApi}/${FrontendAppName}`)
       .then((tokenResponse) => {
         if (!Utils.isNullOrUndefined(tokenResponse.data)) {
-          appToken = tokenResponse.data.applicationToken;
+          appToken = StringUtils.defaultIfEmpty(tokenResponse.data.applicationToken, "");
           expireHours = tokenResponse.data.expireHours;
         }
       })
-      .catch((error) => console.log(error))
+      .catch((error) => logging.error("Failed to get api token", error))
       .finally(() => saveApiTokenToCookie(appToken, expireHours));
   };
 

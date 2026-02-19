@@ -21,14 +21,16 @@ function MovieCard({ model }: Readonly<MovieCardProps>) {
       favoritesStorageFacade.removeFromFavorites(model.id);
     } else {
       setIsFavorite(true);
-      favoritesStorageFacade.addToFavorites(new FavoriteMovie(model.id, model.title));
+      favoritesStorageFacade.addToFavorites(
+        new FavoriteMovie(model.id, model.title),
+      );
     }
   };
 
   // Init
   useEffect(() => {
     const initFavoriteStatus = () => {
-      const favoriteMovie = favoritesStorageFacade.getFromFavorites(model.id)
+      const favoriteMovie = favoritesStorageFacade.getFromFavorites(model.id);
       if (favoriteMovie !== null) {
         setIsFavorite(true);
       }
@@ -37,23 +39,35 @@ function MovieCard({ model }: Readonly<MovieCardProps>) {
     initFavoriteStatus();
   }, []);
 
+  const openMovieDetailsPage = () => {
+    UrlUtils.changeCurrentLocation(
+      `${UrlUtils.getCurrentLocation()}/${MovieDetailsRoute}/${model.id}`,
+    );
+  };
+
   const movieTitle = model.title.length > 0 ? model.title : "No title";
 
   return (
     <div className="movie-card card shadow mt-4 ms-4">
-      <div className="movie-card-img-div">
-        <img
-          src={
-            model.imageUrl !== null &&
-            model.imageUrl !== undefined &&
-            model.imageUrl.length > 0
-              ? model.imageUrl
-              : imgMoviePlaceholder
-          }
-          className="card-img-top"
-          alt={movieTitle}
-        />
-      </div>
+      <button
+        type="button"
+        className="btn p-0 m-0"
+        onClick={openMovieDetailsPage}
+      >
+        <div className="movie-card-img-div">
+          <img
+            src={
+              model.imageUrl !== null &&
+              model.imageUrl !== undefined &&
+              model.imageUrl.length > 0
+                ? model.imageUrl
+                : imgMoviePlaceholder
+            }
+            className="card-img-top"
+            alt={movieTitle}
+          />
+        </div>
+      </button>
       <div className="card-body">
         <h6 className="card-title movie-card-title-p" title={movieTitle}>
           {movieTitle}
@@ -75,16 +89,14 @@ function MovieCard({ model }: Readonly<MovieCardProps>) {
           buttonColor="primary"
           buttonClass="ms-2"
           buttonIconClass="bi-eyeglasses"
-          onButtonClick={() => { }}
+          onButtonClick={() => {}}
         />
         <IconButtonWithTooltip
           text="About the movie"
           buttonColor="primary"
           buttonClass="ms-2"
           buttonIconClass="bi-info-circle-fill"
-          onButtonClick={() => {
-            UrlUtils.changeCurrentLocation(`${UrlUtils.getCurrentLocation()}/${MovieDetailsRoute}/${model.id}`);
-          }}
+          onButtonClick={openMovieDetailsPage}
         />
       </div>
     </div>

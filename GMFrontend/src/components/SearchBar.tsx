@@ -1,8 +1,7 @@
 import { type FormEvent, useState } from "react";
 import { StringEmpty } from "../common/CommonConst";
-import Utils from "../common/Utils";
 import StringUtils from "../common/StringUtils";
-import LoggingFacade from "../facades/LoggingFacade";
+import Utils from "../common/Utils";
 
 interface SearchBarProps {
   onSubmitted?: (searchValue: string) => {};
@@ -11,23 +10,19 @@ interface SearchBarProps {
 
 function SearchBar({ onSubmitted, placeholder }: Readonly<SearchBarProps>) {
   const [searchQuery, setSearchQuery] = useState(StringEmpty);
-  const logging = LoggingFacade.getInstance();
-
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const result = Utils.tryInvoke<string>(onSubmitted, searchQuery);
-    if (!StringUtils.isEmpty(result)) {
-      logging.error(result!);
-    }
+    Utils.tryInvoke(() => {
+      if (typeof onSubmitted === "function") {
+        onSubmitted(searchQuery);
+      }
+    });
   };
 
-  let inputPlaceholder = "Search for movies"
-  if (!StringUtils.isEmpty(placeholder)) {
-    inputPlaceholder = placeholder!;
-  }
+  let inputPlaceholder = StringUtils.defaultIfEmpty(placeholder, "Search for movies");
 
   return (
-    <form className="movies-search-form mt-4" onSubmit={onSubmit}>
+    <form className="movies-search-form" onSubmit={onSubmit}>
       <div className="input-group mb-2 mt-2">
         <input
           id="movies-form-search-input"

@@ -12,6 +12,7 @@ public static class DIInjections
     public static IServiceCollection AddCommandHandlers(this IServiceCollection services) =>
         services
             // Movies
+            .AddTransient<ICommandHandler<AddNewMovieCommand>, AddNewMovieCommandHandler>()
             .AddTransient<ICommandHandler<UpdateMovieImageCommand>, UpdateMovieImageCommandHandler>()
             // Tokens
             .AddTransient<ICommandHandler<SaveRevokedTokenCommand>, SaveRevokedTokenCommandHandler>()

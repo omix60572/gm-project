@@ -33,9 +33,8 @@ public class ExceptionLoggingMiddleware
                 .WithProperty(LoggingFields.Http.RequestPath, fullRequestPath)
                 .WithProperty(LoggingFields.Http.Method, request.Method)
                 .Error(ex, ExceptionMessage);
-            // https://dev.to/farrukh_rehman/lesson-13a-centralized-error-handling-validation-backend-29ip
 
-
+            // TODO: https://dev.to/farrukh_rehman/lesson-13a-centralized-error-handling-validation-backend-29ip
             await HandleExceptionAsync(context, ex);
         }
     }

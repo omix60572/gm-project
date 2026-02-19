@@ -9,6 +9,7 @@ import { StringEmpty } from "../common/CommonConst";
 import StringUtils from "../common/StringUtils";
 import LoggingFacade from "../facades/LoggingFacade";
 import Utils from "../common/Utils";
+import AddNewMovieButton from "./AddNewMovieButton";
 
 interface MoviesViewProps {
   searchPlaceholder?: string;
@@ -31,8 +32,8 @@ function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
         if (!Utils.isNullOrUndefined(popularMoviesResponse)) {
           setMovies(popularMoviesResponse);
         }
-      } catch (e) {
-        logging.error("Failed to load the movies...", e);
+      } catch (error) {
+        logging.error("Failed to load the movies...", error);
         setError("Failed to load the movies...");
       } finally {
         setLoading(false);
@@ -42,11 +43,11 @@ function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
     loadPopularMovies();
   }, []);
 
-  const handleResult = (movies: MovieCardModel[], error: string) => {
+  const handleResult = (movies: MovieCardModel[], errorString: string) => {
     let errorMessage = StringEmpty;
 
-    if (!StringUtils.isEmpty(error)) {
-      errorMessage = error;
+    if (!StringUtils.isEmpty(errorString)) {
+      errorMessage = errorString;
     } else if (movies === null || movies.length === 0) {
       errorMessage = "Movies list is empty";
     }
@@ -61,7 +62,14 @@ function MoviesView({ searchPlaceholder }: Readonly<MoviesViewProps>) {
   const timeKeyOffset = Date.now();
   return (
     <>
-      <SearchBar placeholder={searchPlaceholder} />
+      <div className="d-flex align-items-center mt-4">
+        <div className="flex-grow-1">
+          <SearchBar placeholder={searchPlaceholder} />
+        </div>
+        <div className="ms-2">
+          <AddNewMovieButton />
+        </div>
+      </div>
       {loading ? (
         <div className="d-inline-block">
           {Array.from({ length: 10 }).map((_, index) => (
