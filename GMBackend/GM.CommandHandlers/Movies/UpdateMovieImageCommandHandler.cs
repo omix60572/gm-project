@@ -7,6 +7,6 @@ public class UpdateMovieImageCommandHandler : CommandHandlerBase, ICommandHandle
 {
     public Task ExecuteAsync(UpdateMovieImageCommand command, CancellationToken cancellation)
     {
-        throw new NotImplementedException();
+        return Task.CompletedTask;
     }
 }

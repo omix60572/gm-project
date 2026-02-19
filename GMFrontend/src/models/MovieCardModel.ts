@@ -18,6 +18,10 @@ class MovieCardModel {
     this.description = description;
     this.releaseYear = releaseYear;
   }
+
+  public static getDefault(): MovieCardModel {
+    return new MovieCardModel(0, "-", "-", "-", 0);
+  }
 }
 
 export default MovieCardModel;

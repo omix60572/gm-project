@@ -1,4 +1,5 @@
 import logoSmall from "../assets/logo-small.png";
+import AddNewMovieButton from "./AddNewMovieButton";
 
 interface TopMenuBarProps {
   switchTheme: () => void;
@@ -18,8 +19,7 @@ function TopMenuBar({ switchTheme }: Readonly<TopMenuBarProps>) {
             width="30"
             height="30"
             className="d-inline-block align-text-top me-1"
-          />{" "}
-          Good Movies are here
+          /> Good Movies are here
         </a>
         <ul className="nav">
           <li className="nav-item">
@@ -35,7 +35,7 @@ function TopMenuBar({ switchTheme }: Readonly<TopMenuBarProps>) {
         </ul>
         <button
           type="button"
-          className="btn btn-warning top-menu-theme-switch-btn"
+          className="btn btn-warning top-menu-sw-btn"
           onClick={switchTheme}
         >
           Switch theme

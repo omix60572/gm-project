@@ -22,6 +22,7 @@
   height: 9rem;
   width: auto;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .movie-card-title-p {

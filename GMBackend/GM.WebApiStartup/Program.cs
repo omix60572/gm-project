@@ -1,7 +1,7 @@
 ﻿using GM.CommandHandlers;
 using GM.QueryHandlers;
 using GM.RemoteSearch;
-using GM.Services.Settings;
+using GM.Services;
 using GM.Sql;
 using GM.WebApi;
 using Microsoft.AspNetCore.Hosting;
@@ -53,8 +53,8 @@ public static class Program
             .ConfigureServices((_, services) =>
             {
                 services
-                    .Configure<SqlSettings>(configuration.GetSection(SqlSettings.Section))
-                    .Configure<JwtSettings>(configuration.GetSection(JwtSettings.Section))
+                    .ConfigureSqlSettings(configuration)
+                    .ConfigureServicesSettings(configuration)
                     .ConfigureRemoteSearchSettings(configuration);
 
                 var intermediateProvider = services.BuildServiceProvider();

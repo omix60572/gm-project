@@ -6,7 +6,17 @@ import Favorites from "../pages/Favorites";
 import Footer from "./Footer";
 import LocalStorageService from "../services/LocalStorageService";
 import { LocalStorageThemeKey } from "../common/LocalStorageKeys";
-import { ThemeValueDark, ThemeValueLight, ThemeAttributeValue } from "../common/CommonConst";
+import {
+  ThemeValueDark,
+  ThemeValueLight,
+  ThemeAttributeValue,
+} from "../common/CommonConst";
+import {
+  AddNewMovieRoute,
+  FavoritesRoute,
+  MovieDetailsRoute,
+} from "../common/Routes";
+import AddNewMovie from "../pages/AddNewMovie";
 
 interface AppContentProps {
   body: HTMLElement;
@@ -17,21 +27,16 @@ function AppContent({ body }: Readonly<AppContentProps>) {
 
   const currentTheme = localStorageService.getValue(LocalStorageThemeKey);
   if (currentTheme !== null) {
-    body.setAttribute(
-      ThemeAttributeValue,
-      currentTheme
-    );
+    body.setAttribute(ThemeAttributeValue, currentTheme);
   }
 
   const switchTheme = () => {
     const currentMode = body.getAttribute(ThemeAttributeValue);
-    const newColorMode = currentMode === ThemeValueLight ? ThemeValueDark : ThemeValueLight;
+    const newColorMode =
+      currentMode === ThemeValueLight ? ThemeValueDark : ThemeValueLight;
     localStorageService.saveValue(LocalStorageThemeKey, newColorMode);
 
-    body.setAttribute(
-      ThemeAttributeValue,
-      newColorMode
-    );
+    body.setAttribute(ThemeAttributeValue, newColorMode);
   };
 
   return (
@@ -40,8 +45,12 @@ function AppContent({ body }: Readonly<AppContentProps>) {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/moviedetails/:movieId" element={<MovieDetails />} />
+          <Route path={`/${FavoritesRoute}`} element={<Favorites />} />
+          <Route
+            path={`/${MovieDetailsRoute}/:movieId`}
+            element={<MovieDetails />}
+          />
+          <Route path={`/${AddNewMovieRoute}`} element={<AddNewMovie />} />
         </Routes>
       </main>
       <Footer />

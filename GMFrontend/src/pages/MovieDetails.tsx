@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import SelectedMovieDetailsStub from "../components/SelectedMovieDetailsStub";
 import SelectedMovieDetails from "../components/SelectedMovieDetails";
-import type MovieCardModel from "../models/MovieCardModel";
+import MovieCardModel from "../models/MovieCardModel";
 import ErrorBlock from "../components/common/ErrorBlock";
 import MoviesApiService from "../services/MoviesApiService";
 import { StringEmpty } from "../common/CommonConst";
 import UrlUtils from "../common/UrlUtils";
 import LoggingFacade from "../facades/LoggingFacade";
+import Utils from "../common/Utils";
+import StringUtils from "../common/StringUtils";
 
 // TODO: Добавить кнопки по работе с добавлением в избранное и так далее
 function MovieDetails() {
-  const logging = LoggingFacade.getInstance();
   const urlsParts = document.URL.split("/");
   let movieIdStr = urlsParts.at(-1);
   movieIdStr ??= "-1";
@@ -21,16 +22,18 @@ function MovieDetails() {
   const [error, setError] = useState(StringEmpty);
   const [loading, setLoading] = useState(true);
   const moviesApiService = MoviesApiService.getInstance();
+  const logging = LoggingFacade.getInstance();
 
   useEffect(() => {
     const loadMovie = async () => {
       try {
-        const movieResponse: MovieCardModel = await moviesApiService.getMovieById(movieId);
-        if (movieResponse !== null && movieResponse !== undefined) {
+        const movieResponse: MovieCardModel =
+          await moviesApiService.getMovieById(movieId);
+        if (!Utils.isNullOrUndefined(movieResponse)) {
           setMovie(movieResponse);
         }
-      } catch (e) {
-        logging.error("Failed to load the movie details...", e);
+      } catch (error) {
+        logging.error("Failed to load the movie details...", error);
         setError("Failed to load the movie details...");
       } finally {
         setLoading(false);
@@ -40,18 +43,19 @@ function MovieDetails() {
     loadMovie();
   }, []);
 
-  const handleResult = (movie: MovieCardModel, error: string) => {
+  const handleResult = (movie: MovieCardModel | undefined, errorString: string) => {
     let errorMessage = StringEmpty;
 
-    if (error !== null && error !== undefined && error !== StringEmpty)
-      errorMessage = error;
-    else if (movie === null || movie === undefined)
+    if (!StringUtils.isEmpty(errorString)) {
+      errorMessage = errorString;
+    } else if (movie === null || movie === undefined) {
       errorMessage = "The movie was not found...";
+    }
 
     return errorMessage.length > 0 ? (
       <ErrorBlock text={errorMessage} />
     ) : (
-      <SelectedMovieDetails movie={movie} />
+      <SelectedMovieDetails movie={movie ?? MovieCardModel.getDefault()} />
     );
   };
 
@@ -68,7 +72,7 @@ function MovieDetails() {
           <i className="bi bi-arrow-left me-1"></i> Go back
         </button>
       </div>
-      {loading ? <SelectedMovieDetailsStub /> : handleResult(movie!, error)}
+      {loading ? <SelectedMovieDetailsStub /> : handleResult(movie, error)}
     </>
   );
 }

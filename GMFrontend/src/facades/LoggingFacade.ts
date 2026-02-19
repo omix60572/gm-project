@@ -19,11 +19,11 @@ class LoggingFacade {
       console.info(message);
   }
 
-  public warn(message: string) {
-    console.warn(message);
+  public warn(message?: string | null | undefined, error?: any) {
+    console.warn(message, error);
   }
 
-  public error(message?: string, error?: any) {
+  public error(message?: string | null | undefined, error?: any) {
     console.error(message, error);
   }
 }
