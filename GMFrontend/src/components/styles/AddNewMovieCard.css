@@ -1,0 +1,5 @@
+.new-movie-wide-card-div {
+  max-width: 85rem;
+  display: inline-block;
+  text-align: left;
+}
