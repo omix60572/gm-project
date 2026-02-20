@@ -43,7 +43,10 @@ function MovieDetails() {
     loadMovie();
   }, []);
 
-  const handleResult = (movie: MovieCardModel | undefined, errorString: string) => {
+  const handleResult = (
+    movie: MovieCardModel | undefined,
+    errorString: string,
+  ) => {
     let errorMessage = StringEmpty;
 
     if (!StringUtils.isEmpty(errorString)) {
