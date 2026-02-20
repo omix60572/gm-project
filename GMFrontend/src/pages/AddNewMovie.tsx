@@ -15,7 +15,7 @@ function AddNewMovie() {
           <i className="bi bi-arrow-left me-1"></i> Go back
         </button>
       </div>
-      <p className="text-start fs-4 text ms-4 mt-4">
+      <p className="text-start fs-4 text mt-4">
         Adding a movie to the library:
       </p>
       <AddNewMovieCard />
