@@ -1,8 +1,10 @@
 ﻿using GM.WebApi.Facades.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GM.WebApi.Controllers;
 
+// TODO: Оставить только API для отзыва токенов
 [Route("api/tokens")]
 public class TokensController : BaseController
 {
@@ -11,6 +13,7 @@ public class TokensController : BaseController
     public TokensController(ITokensFacade tokensFacade) =>
         this.tokensFacade = tokensFacade;
 
+    // TODO: Выдача токена только по логину и паролю
     [HttpGet]
     [Route("get/{applicationName}")]
     public async Task<IActionResult> GetToken(string applicationName)
@@ -24,6 +27,7 @@ public class TokensController : BaseController
 
     [HttpPost]
     [Route("revoke/{applicationName}/{token}")]
+    [Authorize]
     public async Task<IActionResult> RevokeToken(string applicationName, string token, CancellationToken cancellation)
     {
         if (!ModelState.IsValid)

@@ -1,5 +1,4 @@
 import logoSmall from "../assets/logo-small.png";
-import AddNewMovieButton from "./AddNewMovieButton";
 
 interface TopMenuBarProps {
   switchTheme: () => void;

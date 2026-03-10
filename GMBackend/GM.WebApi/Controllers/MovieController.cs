@@ -4,6 +4,7 @@ using GM.Contracts.Models;
 using GM.Contracts.Queries;
 using GM.Contracts.Queries.Movies;
 using GM.WebApi.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GM.WebApi.Controllers;
@@ -36,6 +37,7 @@ public class MovieController : BaseController
 
     [HttpPost]
     [Route("addmovie")]
+    [Authorize]
     public async Task<IActionResult> AddMovie([FromBody]MovieModel movie, CancellationToken cancellation)
     {
         if (!ModelState.IsValid)

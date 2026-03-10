@@ -1,8 +1,10 @@
-﻿namespace GM.Services.Interfaces;
+﻿using GM.Contracts.Models;
+
+namespace GM.Services.Interfaces;
 
 public interface ITokensService
 {
-    string CreateToken(string applicationName);
+    string CreateToken(UserModel user);
     bool ValidateToken(string token);
     uint GetExpireHours();
     DateTime GetExpireDateTime(string tokenString);

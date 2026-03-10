@@ -1,2 +1,2 @@
 export const AppNameHeader = "ApplicationName";
-export const AppTokenHeader = "ApplicationToken";
+export const AuthorizationHeader = "Authorization";

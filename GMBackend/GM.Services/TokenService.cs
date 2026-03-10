@@ -1,4 +1,5 @@
-﻿using GM.Services.Interfaces;
+﻿using GM.Contracts.Models;
+using GM.Services.Interfaces;
 using GM.Services.Settings;
 using Microsoft.IdentityModel.Tokens;
 using NLog;
@@ -19,12 +20,13 @@ public class TokenService : ITokensService
         this.logger = LogManager.GetCurrentClassLogger();
     }
 
-    public string CreateToken(string applicationName)
+    public string CreateToken(UserModel user)
     {
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.Sub, applicationName),            // Subject
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())   // (JWT ID) claim provides a unique identifier for the JWT
+            new Claim(JwtRegisteredClaimNames.Sub, user.Username),                  // Subject
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),      // (JWT ID) claim provides a unique identifier for the JWT
+            new Claim(ClaimTypes.Name, user.Username)
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.Key));

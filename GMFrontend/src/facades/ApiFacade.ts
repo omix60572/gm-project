@@ -1,9 +1,10 @@
 import axios, { type AxiosInstance } from "axios";
 import { ApiBaseUrl } from "../common/Endpoints";
 import { FrontendAppName } from "../common/CommonConst";
-import { AppNameHeader, AppTokenHeader } from "../common/Headers";
+import { AppNameHeader, AuthorizationHeader } from "../common/Headers";
 import CookieStorageService from "../services/CookieStorageService";
 import { CookieStorageAppTokenKey } from "../common/CookieStorageKeys";
+import StringUtils from "../common/StringUtils";
 
 class ApiFacade {
   private static Instance: ApiFacade | null = null;
@@ -18,8 +19,11 @@ class ApiFacade {
     });
 
     this.api.interceptors.request.use(async (config) => {
+      const token = await this.cookieStorageService.getValue(CookieStorageAppTokenKey);
       config.headers.set(AppNameHeader, FrontendAppName, true);
-      config.headers.set(AppTokenHeader, await this.cookieStorageService.getValue(CookieStorageAppTokenKey), true);
+      if (!StringUtils.isEmpty(token)) {
+        config.headers.set(AuthorizationHeader, `Bearer ${token}`, true);
+      }
       return config;
     });
   }

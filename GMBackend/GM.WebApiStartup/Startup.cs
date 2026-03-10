@@ -14,11 +14,16 @@ public class Startup
     private readonly Logger logger = LogManager.GetCurrentClassLogger();
     private const string OriginsPolicy = "AllowAllOrigins";
 
+    private readonly IWebHostEnvironment environment;
+
+    public Startup(IWebHostEnvironment environment) =>
+        this.environment = environment;
+
     public void ConfigureServices(IServiceCollection services)
     {
         this.logger.Trace("Web API configuring services at startup");
 
-        if (true) // TODO: Fix it already
+        if (this.environment.IsDevelopment())
         {
             // Add DEV CORS policy
             services.AddCors(options =>
@@ -44,18 +49,25 @@ public class Startup
             .AddNewtonsoftJson();
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app)
     {
         this.logger.Trace("Web API is starting");
 
-        if (env.IsDevelopment())
+        app.UseRouting();
+
+        if (this.environment.IsDevelopment())
         {
             this.logger.Trace("Starting in developer mode");
             app.UseDeveloperExceptionPage();
+
+            // Add DEV CORS policy
+            app.UseCors(OriginsPolicy);
+        }
+        else
+        {
+            // TODO: Add production ready cors policy
         }
 
-        app.UseRouting();
-        app.UseCors(OriginsPolicy);
         app.UseWebApiMiddleware();
         app.UseEndpoints(endpoints => endpoints.MapControllers());
         

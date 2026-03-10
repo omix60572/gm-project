@@ -8,5 +8,5 @@ public static class ApplicationBuilderExtensions
         builder
             .UseMiddleware<ExceptionLoggingMiddleware>()
             .UseMiddleware<LoggingMiddleware>()
-            .UseMiddleware<TokenValidationMiddleware>();
+            .UseMiddleware<UserApplicationValidationMiddleware>();
 }

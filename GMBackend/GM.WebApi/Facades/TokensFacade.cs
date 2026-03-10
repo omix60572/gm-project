@@ -25,11 +25,12 @@ public class TokensFacade : ITokensFacade
         this.commandDispatcher = commandDispatcher;
     }
 
+    // TODO: Перейти на генерацию токена для авторизованного пользователя (для авторизации как раз получаем токен)
     public ApplicationTokenResponse GetApplicationToken(string applicationName)
     {
         return new ApplicationTokenResponse
         {
-            ApplicationToken = this.tokensService.CreateToken(applicationName),
+            //ApplicationToken = this.tokensService.CreateToken(applicationName),
             ExpireHours = this.tokensService.GetExpireHours()
         };
     }
@@ -48,7 +49,7 @@ public class TokensFacade : ITokensFacade
         var existingRevokedToken = await this.queryDispatcher.ExecuteAsync<RevokedTokenQuery, RevokedTokenQueryResponse>(
             new RevokedTokenQuery { ApplicationName = applicationName, Token = tokenString },
             cancellation);
-        
+
         if (existingRevokedToken != null)
             return true;
 

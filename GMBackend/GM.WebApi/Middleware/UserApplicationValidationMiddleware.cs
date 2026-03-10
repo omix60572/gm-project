@@ -4,14 +4,14 @@ using Microsoft.AspNetCore.Http;
 
 namespace GM.WebApi.Middleware;
 
-public class TokenValidationMiddleware
+public class UserApplicationValidationMiddleware
 {
     private readonly ITokensFacade tokensFacade;
     private readonly RequestDelegate next;
 
     private const int Unauthorized = (int)HttpStatusCode.Unauthorized;
 
-    public TokenValidationMiddleware(RequestDelegate next, ITokensFacade tokensFacade)
+    public UserApplicationValidationMiddleware(RequestDelegate next, ITokensFacade tokensFacade)
     {
         this.tokensFacade = tokensFacade;
         this.next = next;
@@ -43,25 +43,28 @@ public class TokenValidationMiddleware
             return;
         }
 
-        if (request.Path.HasValue && request.Path.Value.StartsWith("/api/tokens/get/") && request.Method == "GET")
-        {
-            await this.next(context);
-            return;
-        }
+        // TODO: Вот тут обрубаем логику
+        //if (request.Path.HasValue && request.Path.Value.StartsWith("/api/tokens/get/") && request.Method == "GET")
+        //{
+        //    await this.next(context);
+        //    return;
+        //}
 
-        var authTokenHeader = request.Headers["ApplicationToken"];
-        if (authTokenHeader.Count == 0 || string.IsNullOrEmpty(authTokenHeader.ToString()))
-        {
-            response.StatusCode = Unauthorized;
-            return;
-        }
+        // TODO: Валидацуия токена будет работать по другому
+        //var authTokenHeader = request.Headers["ApplicationToken"];
+        //if (authTokenHeader.Count == 0 || string.IsNullOrEmpty(authTokenHeader.ToString()))
+        //{
+        //    response.StatusCode = Unauthorized;
+        //    return;
+        //}
 
-        var isValidToken = await this.tokensFacade.ValidateTokenAsync(applicationName, authTokenHeader.ToString(), context.RequestAborted);
-        if (!isValidToken)
-        {
-            response.StatusCode = Unauthorized;
-            return;
-        }
+        // TODO: Валидацуия токена будет работать по другому
+        //var isValidToken = await this.tokensFacade.ValidateTokenAsync(applicationName, authTokenHeader.ToString(), context.RequestAborted);
+        //if (!isValidToken)
+        //{
+        //    response.StatusCode = Unauthorized;
+        //    return;
+        //}
 
         await this.next(context);
     }
